@@ -1,0 +1,1380 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Title Page-->
+    <title>Hồ sơ đăng ký</title>
+    <link rel="icon" type="image/png" href="~/Content/img/logo.jpg">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Icons font CSS-->
+    <link href="~/Content/login/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="~/Content/login/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/Content/login/main.css" rel="stylesheet" media="all">
+</head>
+<body class="bg-gra-02">
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php">
+        <!-- Menu-->
+        <div class="main" id="main">
+            <div class="container">
+                <div class="logo">
+                    <a class="ahref" href="https://uet.vnu.edu.vn/"><img src="~/Content/img/logo.jpg" width="45" height="45"></a>
+                </div>
+                <nav>
+                    <div class="nav-fostrap">
+                        <ul>
+                            <li><a href="https://tuyensinh.uet.vnu.edu.vn/xettuyen/dangxuat.php">Đăng xuất (Nguyễn Ngọc Lan Hương)</a></li>
+                            <li><a href="https://tuyensinh.uet.vnu.edu.vn/xettuyen/doimatkhau.php">Đổi mật khẩu</a></li>
+
+                            <li><a href="https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php">Hồ sơ thí sinh</a></li>
+
+
+                        </ul>
+                    </div> <!-- Dành cho Mobile -->
+                    <div class="nav-bg-fostrap">
+                        <div class="navbar-fostrap"> <span></span> <span></span> <span></span> </div>
+                        <a href="https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php" class="title-mobile">Menu</a>
+                    </div>
+
+                </nav>
+            </div>
+
+        </div>
+
+        <script src="./Hồ sơ đăng ký_files/jquery.min.js.download"></script>
+
+
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w960">
+                <div class="card card-4">
+                    <h1 class="title1">HỒ SƠ ĐĂNG KÝ XÉT TUYỂN</h1>
+                    <p style="text-align:center;"><font size="" color="#ff3300">Thí sinh chưa nộp hồ sơ</font></p>
+                    <div class="card-body">
+
+                        <h2 class="title">A. Thông tin cá nhân</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên thí sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtHovaten" placeholder="" value="Nguyễn Ngọc Lan Hương">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Giới tính (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">
+                                            Nam
+                                            <input type="radio" name="radGioitinh" value="1">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">
+                                            Nữ
+                                            <input type="radio" name="radGioitinh" value="2" checked="">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Ngày sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="date" name="txtNgaysinh" value="">
+                                        <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Nơi sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtNoisinh" placeholder="" value="">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+
+                                    <label class="label">Dân tộc (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple">
+                                        <select name="optDantoc" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px; color : #555;"
+                                               >
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option value="01">Kinh</option>
+
+                                            <option value="02">Tày</option>
+
+                                            <option value="03">Thái</option>
+
+                                            <option value="04">Hoa</option>
+
+                                            <option value="05">Khmer</option>
+
+                                            <option value="06">Mường</option>
+
+                                            <option value="07">Nùng</option>
+
+                                            <option value="08">Mông</option>
+
+                                            <option value="09">Dao</option>
+
+                                            <option value="10">Gia Rai</option>
+
+                                            <option value="11">Ngái</option>
+
+                                            <option value="12">Ê Đê</option>
+
+                                            <option value="13">Ba Na</option>
+
+                                            <option value="14">Xơ Đăng</option>
+
+                                            <option value="15">Sán Chay</option>
+
+                                            <option value="16">Cơ Ho</option>
+
+                                            <option value="17">Chăm</option>
+
+                                            <option value="18">Sán Dìu</option>
+
+                                            <option value="19">Hrê</option>
+
+                                            <option value="20">Mnông</option>
+
+                                            <option value="21">Raglay</option>
+
+                                            <option value="22">Xtiêng</option>
+
+                                            <option value="23">Bru Vân Kiều</option>
+
+                                            <option value="24">Thổ (4)</option>
+
+                                            <option value="25">Giáy</option>
+
+                                            <option value="26">Cơ Tu</option>
+
+                                            <option value="27">Gié Triêng</option>
+
+                                            <option value="28">Mạ</option>
+
+                                            <option value="29">Khơ mú</option>
+
+                                            <option value="30">Co</option>
+
+                                            <option value="31">Tà Ôi</option>
+
+                                            <option value="32">Chơ Ro</option>
+
+                                            <option value="33">Kháng</option>
+
+                                            <option value="34">Xinh Mun</option>
+
+                                            <option value="35">Hà Nhì</option>
+
+                                            <option value="36">Chu Ru</option>
+
+                                            <option value="37">Lào</option>
+
+                                            <option value="38">La Chí</option>
+
+                                            <option value="39">La Ha</option>
+
+                                            <option value="40">Phù Lá</option>
+
+                                            <option value="41">La Hủ</option>
+
+                                            <option value="42">Lự</option>
+
+                                            <option value="43">Lô Lô</option>
+
+                                            <option value="44">Chứt</option>
+
+                                            <option value="45">Mảng</option>
+
+                                            <option value="46">Pà Thẻn</option>
+
+                                            <option value="47">Cơ Lao</option>
+
+                                            <option value="48">Cống</option>
+
+                                            <option value="49">Bố Y</option>
+
+                                            <option value="50">Si La</option>
+
+                                            <option value="51">Pu Péo</option>
+
+                                            <option value="52">Brâu</option>
+
+                                            <option value="53">Ơ Đu</option>
+
+                                            <option value="54">Rơ Măm</option>
+
+                                            <option value="55">Người nước ngoài</option>
+
+                                            <option value="56">Không xác định</option>
+                                            <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 133.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDantoc-op-container"><span class="select2-selection__rendered" id="select2-optDantoc-op-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select>
+
+                                            <div class="select-dropdown"></div>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ảnh hồ sơ (*.jpg *.jpeg, tỷ lệ 4:6) (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="input-group js-input-file">
+                                        <input class="input-file" type="file" id="fileAnh" name="imgAnh" accept="image/*">
+                                        <input class="input-file" type="text" name="txtimgAnh" hidden="" value="">
+                                        <label class="label--file" for="fileAnh">Chọn file ảnh</label>
+                                        <span class="input-file__info">Chưa có file nào được chọn</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <!-- Ảnh thí sinh -->
+                                <div class="input-group right">
+                                    <img src="https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php" width="115" height="150">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Số báo danh (trong Kỳ thi THPT)</label>
+                                    <input class="input--style-4" type="text" name="txtSBD" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Hộ khẩu thường trú(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtHokhau" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="linebreakdot">
+                        <label class="label">Nơi học trung học phổ thông (THPT) hoặc tương đương: <font style="font-style: italic; font-size: 13px;">(Nếu cả 3 năm đều học cùng trường thì chỉ cần nhập thông tin vào năm lớp 10)</font> (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 10</label>
+                                <input class="input--style-4" type="text" name="txtNoihoc10" value="">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Lớp 11</label>
+                                    <input class="input--style-4" type="text" name="txtNoihoc11" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 12</label>
+                                <input class="input--style-4" type="text" name="txtNoihoc12" value="">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Năm tốt nghiệp THPT</label>
+                                    <input class="input--style-4" type="text" name="txtNamtotnghiep" value="2016">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">B. Thông tin phục vụ xét tuyển</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Đối tượng ưu tiên (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="optDoituong" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option value="1">Không ưu tiên</option>
+
+                                            <option value="2">Đối tượng 01</option>
+
+                                            <option value="3">Đối tượng 02</option>
+
+                                            <option value="4">Đối tượng 03</option>
+
+                                            <option value="5">Đối tượng 04</option>
+
+                                            <option value="6">Đối tượng 05</option>
+
+                                            <option value="7">Đối tượng 06</option>
+
+                                            <option value="8">Đối tượng 07</option>
+
+                                            <option value="9">Ưu tiên xét tuyển</option>
+
+                                            <option value="10">Dự bị dân tộc</option>
+
+                                            <option value="11">30A</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Khu vực (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="optKhuvuc" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option value="1">Khu vực 1 (KV1)</option>
+
+                                            <option value="2">Khu vực 2 - nông thôn (KV2-NT)</option>
+
+                                            <option value="3">Khu vực 2 (KV2)</option>
+
+                                            <option value="4">Khu vực 3 (KV3)</option>
+
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="linebreakdot">
+                        <label class="label">Thông tin về quá trình học tập tại trường THPT (học lực, hạnh kiểm) (<font size="4px" color="#ff3300"><strong>*</strong></font>): </label>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Năm lớp 10</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học lực</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHocluc10" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Giỏi">Giỏi</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                            <option value="Kém">Kém</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Hạnh kiểm</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHanhkiem10" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Tốt">Tốt</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Năm lớp 11</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học lực</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHocluc11" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Giỏi">Giỏi</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                            <option value="Kém">Kém</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Hạnh kiểm</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHanhkiem11" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Tốt">Tốt</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Năm lớp 12</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học lực</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHocluc12" tabindex="-1"  class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Giỏi">Giỏi</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                            <option value="Kém">Kém</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Hạnh kiểm</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select name="txtHanhkiem12" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;"
+                                               >
+                                            <option selected="" value="">Chưa chọn</option>
+                                            <option value="Tốt">Tốt</option>
+                                            <option value="Khá">Khá</option>
+                                            <option value="Trung bình">Trung bình</option>
+                                            <option value="Yếu">Yếu</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="sesstionbreak">
+                        <h2 class="title">C. Thông tin liên hệ</h2>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ Email (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="email" readonly="" name="txtEmail" value="lanhuongitk55lvt@gmail.com">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại di động (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtDienthoai1" value="">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại Bố/Mẹ</label>
+                                    <input class="input--style-4" type="text" name="txtDienthoai2" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên người nhận thông báo (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtHotenthongbao" value="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="text" name="txtDiachithongbao" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">D. Xét tuyển</h2>
+                                    <label class="label">Kết quả học tập năm lớp 10 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+                                    <div class="row row-space">
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtToan10Hk1" placeholder="Toán" value="">
+                                                    <span class="tooltiptext">Toán</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtLy10Hk1" placeholder="Lý" value="">
+                                                    <span class="tooltiptext">Lý</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtHoa10Hk1" placeholder="Hóa" value="">
+                                                    <span class="tooltiptext">Hóa</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtAnh10Hk1" placeholder="Anh" value="">
+                                                    <span class="tooltiptext">Anh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtTb10Hk1" placeholder="TB chung" value="">
+                                                    <span class="tooltiptext">TB chung</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="label">Kết quả học tập năm lớp 10 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+                                    <div class="row row-space">
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtToan10Hk2" placeholder="Toán" value="">
+                                                    <span class="tooltiptext">Toán</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtLy10Hk2" placeholder="Lý" value="">
+                                                    <span class="tooltiptext">Lý</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtHoa10Hk2" placeholder="Hóa" value="">
+                                                    <span class="tooltiptext">Hóa</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtAnh10Hk2" placeholder="Anh" value="">
+                                                    <span class="tooltiptext">Anh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtTb10Hk2" placeholder="TB chung" value="">
+                                                    <span class="tooltiptext">TB chung</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="label">Kết quả học tập năm lớp 11 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+                                    <div class="row row-space">
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtToan11Hk1" placeholder="Toán" value="">
+                                                    <span class="tooltiptext">Toán</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtLy11Hk1" placeholder="Lý" value="">
+                                                    <span class="tooltiptext">Lý</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtHoa11Hk1" placeholder="Hóa" value="">
+                                                    <span class="tooltiptext">Hóa</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtAnh11Hk1" placeholder="Anh" value="">
+                                                    <span class="tooltiptext">Anh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtTb11Hk1" placeholder="TB chung" value="">
+                                                    <span class="tooltiptext">TB chung</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="label">Kết quả học tập năm lớp 11 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+                                    <div class="row row-space">
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtToan11Hk2" placeholder="Toán" value="">
+                                                    <span class="tooltiptext">Toán</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtLy11Hk2" placeholder="Lý" value="">
+                                                    <span class="tooltiptext">Lý</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtHoa11Hk2" placeholder="Hóa" value="">
+                                                    <span class="tooltiptext">Hóa</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtAnh11Hk2" placeholder="Anh" value="">
+                                                    <span class="tooltiptext">Anh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtTb11Hk2" placeholder="TB chung" value="">
+                                                    <span class="tooltiptext">TB chung</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="label">Kết quả học tập năm lớp 12 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+                                    <div class="row row-space">
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtToan12Hk1" placeholder="Toán" value="">
+                                                    <span class="tooltiptext">Toán</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtLy12Hk1" placeholder="Lý" value="">
+                                                    <span class="tooltiptext">Lý</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtHoa12Hk1" placeholder="Hóa" value="">
+                                                    <span class="tooltiptext">Hóa</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtAnh12Hk1" placeholder="Anh" value="">
+                                                    <span class="tooltiptext">Anh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="input-group">
+                                                <div class="tooltip">
+                                                    <input class="input--style-4" type="text" name="txtTb12Hk1" placeholder="TB chung" value="">
+                                                    <span class="tooltiptext">TB chung</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file học bạ và minh chứng đạt giải (nếu có) (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgHocba" name="imgHocba" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgHocba" hidden="" value="">
+                                            <label class="label--file" for="imgHocba">Chọn file học bạ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn khối xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-4">
+                                            <div class="input-group">
+                                               
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optThpt_Nguyenvong1" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
+                                                            style="height:50px;">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="0">A0</option>
+
+                                                        <option value="1">A1</option>
+
+                                                    </select>
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <!-- ----------------- End of Session 1 (THPT Chuyên) ----------- -->
+                                <!-- ----------------- Session 2 (IELTS/TOEFL iBT) ----------- -->
+                                <div class="input-group-content city IELTS" id="IELTS" style="display:none">
+                                    <!--
+                                                                    <hr class="linebreak">
+                                    -->
+                                    <h4>Xét tuyển sử dụng chứng chỉ quốc tế IELTS/TOEFL iBT</h4>
+                                    <label class="label">Kết quả kỳ thi chứng chỉ quốc tế IELTS/TOEFL iBT</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Năm thi</label>
+                                                <input class="input--style-4" type="text" name="txtIELTS_Namthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Tổng Điểm thi</label>
+                                                <input class="input--style-4" type="text" name="txtIELTS_Diemthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Candidate ID</label>
+                                                <input class="input--style-4" type="text" name="txtIELTS_Candidateid" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file chứng chỉ quốc tế IELTS/TOEFL iBT (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgIELTS" name="imgIELTS" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgIELTS" hidden="" value="">
+                                            <label class="label--file" for="imgIELTS">Chọn file chứng chỉ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn nguyện vọng xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 1</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optELTS_Nguyenvong1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optELTS_Nguyenvong1-l4-container"><span class="select2-selection__rendered" id="select2-optELTS_Nguyenvong1-l4-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 2</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optELTS_Nguyenvong2" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optELTS_Nguyenvong2-4c-container"><span class="select2-selection__rendered" id="select2-optELTS_Nguyenvong2-4c-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- ----------------- End of Session 2 (IELTS/TOEFL iBT) ----------- -->
+                                <!-- ----------------- Session 3 (SAT) ----------- -->
+                                <div class="input-group-content city SAT" id="SAT" style="display:none">
+                                    <!--
+                                                                    <hr class="linebreak">
+                                    -->
+                                    <h4>Xét tuyển sử dụng chứng chỉ SAT</h4>
+                                    <label class="label">Kết quả kỳ thi chứng chỉ quốc tế SAT</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Năm thi</label>
+                                                <input class="input--style-4" type="text" name="txtSat_Namthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Điểm thi</label>
+                                                <input class="input--style-4" type="text" name="txtSat_Diemthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file chứng chỉ SAT (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgSat" name="imgSat" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgSat" hidden="" value="">
+                                            <label class="label--file" for="imgSat">Chọn file chứng chỉ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn nguyện vọng xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 1</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optSat_Nguyenvong1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optSat_Nguyenvong1-no-container"><span class="select2-selection__rendered" id="select2-optSat_Nguyenvong1-no-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 2</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optSat_Nguyenvong2" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optSat_Nguyenvong2-tf-container"><span class="select2-selection__rendered" id="select2-optSat_Nguyenvong2-tf-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ----------------- End of Session 3 (SAT) ----------- -->
+                                <!-- ----------------- Session 4 (ACT) ----------- -->
+                                <div class="input-group-content city ACT" id="ACT" style="display:none">
+                                    <!--
+                                                                    <hr class="linebreak">
+                                    -->
+                                    <h4>Xét tuyển sử dụng chứng chỉ ACT</h4>
+                                    <label class="label">Kết quả kỳ thi chứng chỉ quốc tế ACT</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Năm thi</label>
+                                                <input class="input--style-4" type="text" name="txtAct_Namthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Điểm thi</label>
+                                                <input class="input--style-4" type="text" name="txtAct_Diemthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file chứng chỉ ACT (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgAct" name="imgAct" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgAct" hidden="" value="">
+                                            <label class="label--file" for="imgAct">Chọn file chứng chỉ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn nguyện vọng xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 1</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optAct_Nguyenvong1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optAct_Nguyenvong1-i5-container"><span class="select2-selection__rendered" id="select2-optAct_Nguyenvong1-i5-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 2</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optAct_Nguyenvong2" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optAct_Nguyenvong2-qu-container"><span class="select2-selection__rendered" id="select2-optAct_Nguyenvong2-qu-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ----------------- End of Session 4 (ACT) ----------- -->
+                                <!-- ----------------- Session 5 (A-Level) ----------- -->
+                                <div class="input-group-content city A-Level" id="A-Level" style="display:none">
+                                    <!--
+                                                                    <hr class="linebreak">
+                                    -->
+                                    <h4>Xét tuyển sử dụng chứng chỉ A-Level</h4>
+                                    <label class="label">Kết quả kỳ thi chứng chỉ quốc tế A-Level</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Năm thi</label>
+                                                <input class="input--style-4" type="text" name="txtAlevel_Namthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Điểm thi</label>
+                                                <input class="input--style-4" type="text" name="txtAlevel_Diemthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file chứng chỉ A-Level (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgAlevel" name="imgAlevel" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgAlevel" hidden="" value="">
+                                            <label class="label--file" for="imgAlevel">Chọn file chứng chỉ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn nguyện vọng xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 1</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optAlevel_Nguyenvong1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optAlevel_Nguyenvong1-ur-container"><span class="select2-selection__rendered" id="select2-optAlevel_Nguyenvong1-ur-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 2</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optAlevel_Nguyenvong2" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optAlevel_Nguyenvong2-ae-container"><span class="select2-selection__rendered" id="select2-optAlevel_Nguyenvong2-ae-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ----------------- End of Session 5 (A-Level) ----------- -->
+                                <!-- ----------------- Session 6 (DGNL) ----------- -->
+                                <div class="input-group-content city DGNL" id="DGNL" style="display:none">
+                                    <!--
+                                                                    <hr class="linebreak">
+                                    -->
+                                    <h4>Xét tuyển sử dụng điểm thi Đánh giá năng lực</h4>
+                                    <label class="label">Kết quả kỳ thi Đánh giá năng lực</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Năm thi</label>
+                                                <input class="input--style-4" type="text" name="txtDgnl_Namthi" placeholder="" id="diemso" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Điểm thi</label>
+                                                <input class="input--style-4" type="text" name="txtDgnl_Diemthi" placeholder="" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="label">Upload file xác nhận điểm ĐGNL (File *.pdf hoặc *.doc hoặc *.docx)</label>
+                                        <div class="input-group js-input-file">
+                                            <input class="input-file" type="file" id="imgDgnl" name="imgDgnl" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                            <input class="input-file" type="text" name="txtimgDgnl" hidden="" value="">
+                                            <label class="label--file" for="imgDgnl">Chọn file chứng chỉ</label>
+                                            <span class="input-file__info">Chưa có file nào được chọn</span>
+                                        </div>
+                                    </div>
+                                    <label class="label">Chọn nguyện vọng xét tuyển</label>
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 1</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optDgnl_Nguyenvong1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDgnl_Nguyenvong1-8c-container"><span class="select2-selection__rendered" id="select2-optDgnl_Nguyenvong1-8c-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Nguyện vọng 2</label>
+                                                <div class="rs-select2 js-select-simple select--no-search">
+
+                                                    <select name="optDgnl_Nguyenvong2" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                        <option selected="selected" value="">Chưa chọn</option>
+
+                                                        <option value="CN1">CN1 - Công nghệ thông tin</option>
+
+                                                        <option value="CN8">CN8 - Công nghệ thông tin (CLC)</option>
+
+                                                        <option value="CN7">CN7 - Công nghệ Hàng không vũ trụ</option>
+
+                                                        <option value="CN6">CN6 - Công nghệ kỹ thuật cơ điện tử</option>
+
+                                                        <option value="CN5">CN5 - Công nghệ kỹ thuật xây dựng</option>
+
+                                                        <option value="CN4">CN4 - Cơ kỹ thuật</option>
+
+                                                        <option value="CN3">CN3 - Vật lý kỹ thuật</option>
+
+                                                        <option value="CN2">CN2 - Máy tính và Robot</option>
+
+                                                        <option value="CN11">CN11 - Kỹ thuật điều khiển và tự động hóa</option>
+
+                                                        <option value="CN10">CN10 - Công nghệ nông nghiệp</option>
+
+                                                        <option value="CN9">CN9 - Công nghệ kỹ thuật điện tử – viễn thông</option>
+
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDgnl_Nguyenvong2-2z-container"><span class="select2-selection__rendered" id="select2-optDgnl_Nguyenvong2-2z-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                                    <div class="select-dropdown"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ----------------- End of Session 6 (radio_6) ----------- -->
+                            </div>
+                           
+                            <hr class="linebreak">
+                            <h4>Cam kết (<font size="4px" color="#ff3300"><strong>*</strong></font>)</h4>
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <div class="p-t-10">
+                                        <label class="radio-container justify">
+                                            Tôi xin cam đoan những thông tin trên là đúng và cam kết thực hiện đúng Quy chế tuyển sinh đại học hệ chính quy; tuyển sinh cao đẳng nhóm ngành đào tạo giáo viên hệ chính quy của Bộ GDĐT và Hướng dẫn tuyển sinh đại học chính quy năm 2021 của HVKTQS. Nếu có gì sai sót tôi xin chịu trách nhiệm trước HĐTS và pháp luật.
+                                            <p id="demo"></p>
+                                            <input type="checkbox" name="radCamket" id="Camket" value="10">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row row-space">
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <div class="p-t-15">
+                                            <button class="btn btn--radius-2 btn--blue" type="submit" name="butGhinhan" id="Ghinhan" onclick="return kiemtraso();">Ghi nhận</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group center">
+                                        <div class="p-t-15">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group right">
+                                        <div class="p-t-15">
+                                            <button class="btn btn--radius-2 btn--blue" type="submit" name="butNophoso" onclick="return kiemtraso();">Nộp hồ sơ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Jquery JS-->
+            <script src="./Hồ sơ đăng ký_files/jquery.min.js(1).download"></script>
+            <!-- Vendor JS-->
+            <script src="./Hồ sơ đăng ký_files/select2.min.js.download"></script>
+            <script src="./Hồ sơ đăng ký_files/moment.min.js.download"></script>
+            <script src="./Hồ sơ đăng ký_files/daterangepicker.js.download"></script>
+            <!-- Main JS-->
+            <script src="./Hồ sơ đăng ký_files/global.js.download"></script>
+
+           
+            <!-- end document-->
+        </div>
+    </form>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<div style="position: absolute; top: 0px;"></div>
+</html>

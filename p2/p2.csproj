@@ -150,6 +150,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -167,6 +170,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.svg" />
+    <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\1.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\10.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\11.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\12.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\2.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\3.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\4.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\5.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\8.jpg" />
+    <Content Include="Areas\Admin\Content\assets\images\avatars\9.jpg" />
+    <Content Include="Areas\Admin\Content\assets\scripts\main.js" />
+    <Content Include="Areas\Admin\Content\bootstrap.css" />
+    <Content Include="Areas\Admin\Content\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\font-awesome.min.css" />
+    <Content Include="Areas\Admin\Content\main.css" />
+    <Content Include="Areas\Admin\Content\Site.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\images.jpg" />
@@ -187,7 +208,19 @@
     </Content>
     <Content Include="fonts\Roboto-Medium.ttf" />
     <Content Include="fonts\HelveticaWorld-Regular.ttf" />
+
+    <Content Include="Areas\Admin\Views\HomeAdmin\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.eot" />
+    <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.ttf" />
+    <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.woff" />
+    <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.woff" />
+
+    <Content Include="Areas\Admin\Views\web.config" />
+
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -214,6 +247,16 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+
+    <Content Include="Views\Home\ForgetPassword.cshtml" />
+    <Content Include="Views\Home\Information.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Models\" />
+
     <Content Include="Views\Home\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +265,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\StudentImage\" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
