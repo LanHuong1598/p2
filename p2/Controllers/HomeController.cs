@@ -20,7 +20,14 @@ namespace p2.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ForgetPassword()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Information()
         {
             ViewBag.Message = "Your contact page.";
 
