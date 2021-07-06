@@ -74,7 +74,7 @@ namespace p2.Models.Function
             user = dbcontext.imformation_user.Single(x => x.id == info_user.id);
             user = info_user;
             dbcontext.SaveChanges();
-
+             
             return "Thành công";
         }
 
