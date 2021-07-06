@@ -75,6 +75,7 @@ namespace p2.Models.Function
             user = info_user;
             dbcontext.SaveChanges();
 
+
              
             return "Thành công";
         }
