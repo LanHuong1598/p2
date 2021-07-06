@@ -69,6 +69,7 @@ namespace p2.Models.Function
             {
                 info_user.
             }
+
             */
             imformation_user user = new imformation_user();
             user = dbcontext.imformation_user.Single(x => x.id == info_user.id);
