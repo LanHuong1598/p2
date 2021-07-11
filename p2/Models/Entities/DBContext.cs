@@ -28,12 +28,30 @@ namespace p2.Models.Entities
 
             modelBuilder.Entity<area>()
                 .Property(e => e.id)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<area>()
                 .Property(e => e.parent)
-                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<imformation_user>()
+                .Property(e => e.permanent_residence)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<imformation_user>()
+                .Property(e => e.place_of_study_10)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<imformation_user>()
+                .Property(e => e.place_of_study_11)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<imformation_user>()
+                .Property(e => e.place_of_study_12)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<imformation_user>()
+                .Property(e => e.area)
                 .IsUnicode(false);
         }
     }

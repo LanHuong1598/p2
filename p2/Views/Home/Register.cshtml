@@ -32,7 +32,7 @@
     </style>
 </head>
 <body >
-    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="https://tuyensinh.uet.vnu.edu.vn/xettuyen/dangky.php">
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/Home/Register">
 
         <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
             <div class="wrapper wrapper--w680">
@@ -44,56 +44,71 @@
                                 <img src="~/Content/img/logo.jpg" width="200" height="200">
                             </div>
                         </div>
+                       
                         <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <div class="p-t-15">
-                                        <label class="label">Họ và tên</label>
-                                        <input class="input--style-4" type="text" name="txtHovaten" placeholder="" required="" value="">
-                                    </div>
+                            <div class="input-group" style="width : 100%;">
+                                <div class="p-t-15">
+                                    
+                                        <h3 style="color:red">
+                                         
+                                            @Html.ValidationSummary(false, "")
+                                        </h3>
+                                   
+                                    
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row row-space">
+                            <div class="input-group" style="width : 100%;">
+                                <div class="p-t-15">
+                                    <label class="label">Họ và tên</label>
+                                    <input class="input--style-4" type="text" name="name" id="name" placeholder="" required="" value="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row row-space">
+
                             <div class="col-2">
+
                                 <div class="input-group">
+
                                     <div class="p-t-15">
                                         <label class="label">Số CMND/CCCD</label>
-                                        <input class="input--style-4" type="text" name="txtTendangnhap" placeholder="" required="" value="">
+                                        <input class="input--style-4" type="text" name="id" id="id" placeholder="" required="" value="">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <div class="p-t-10">
+                                    <div class="p-t-15">
                                         <label class="label">Địa chỉ Email</label>
-                                        <input class="input--style-4" type="email" name="txtEmail01" placeholder="" required="" value="">
+                                        <input class="input--style-4" type="email" name="email" id="email" placeholder="" required="" value="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <div class="p-t-10">
-                                        <label class="label">Địa chỉ Email (nhập lại)</label>
-                                        <input class="input--style-4" type="email" name="txtEmail02" placeholder="" required="" value="">
-                                    </div>
-                                </div>
-                            </div>
+
+
+
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <div class="p-t-10">
+                                    <div class="p-t-15">
                                         <label class="label">Mật khẩu</label>
-                                        <input class="input--style-4" type="password" name="txtMatkhau1" placeholder="" required="" value="">
+                                        <input class="input--style-4" type="password" name="password" id="password" placeholder="" required="" value="">
                                     </div>
                                 </div>
+
                             </div>
+
                             <div class="col-2">
                                 <div class="input-group">
-                                    <div class="p-t-10">
+                                    <div class="p-t-15">
                                         <label class="label">Mật khẩu (nhập lại)</label>
-                                        <input class="input--style-4" type="password" name="txtMatkhau2" placeholder="" required="" value="">
+                                        <input class="input--style-4" type="password" name="password_confirm" id="password_confirm" placeholder="" required="" value="">
                                     </div>
                                 </div>
                             </div>
@@ -102,8 +117,8 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <div class="p-t-15">
-                                        <button class="btn btn--radius-2 btn--blue" type="submit" name="butDangky" onclick="return kiemtrataikhoan();">Đăng ký</button>
+                                    <div class="p-t-10">
+                                        <button class="btn btn--radius-2 btn--blue" type="submit" name="butDangky" onclick="kiemtradangky()">Đăng ký</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,61 +140,37 @@
                         <script src="./đăng ký_files/daterangepicker.js.tải xuống"></script>
                         <!-- Main JS-->
                         <script src="./đăng ký_files/global.js.tải xuống"></script>
+                        <script>
+                            function kiemtradangky() {
 
+                                var err = "";
+                                var ok = 0;
+                                var txtHoten = document.getElementsByName("name").val();
+                                var txtCMND = document.getElementsByName("id").val();
+                                var txtpass = document.getElementsByName("password").val();
+                                var txtpassconfirm = document.getElementsByName("password_confirm").val();
+                                if (txtHoten.length == 0) {
+                                    err = err + "Chưa nhập đúng họ tên";
+                                    ok = 1;
+                                }
+                                if (txtCMND.length == 0) {
+                                    err = err + "Chưa nhập đúng CMND";
+                                    ok = 1;
+                                }
+                                if (txtpass != txtpassconfirm || txtpass.length == 0) {
+                                    err = err + "Chưa nhập mật khẩu hoặc mật khẩu không trùng";
+                                    ok = 1;
+                                }
+                                if (ok == 0) {
+                                    return true;
+                                }
+                                else {
+                                    alert(err);
+                                    return false;
+                                }
+                            }
+                        </script>
 
-                        @*<script>
-		// KIểm tra số*@
-
-		@*function kiemtrataikhoan() {
-			var txtHovaten			= document.getElementsByName('txtHovaten')[0].value.trim();
-			var txtTendangnhap	= document.getElementsByName('txtTendangnhap')[0].value.trim();
-			var txtEmail01				= document.getElementsByName('txtEmail01')[0].value.trim();
-			var txtEmail02				= document.getElementsByName('txtEmail02')[0].value.trim();
-			var txtMatkhau1			= document.getElementsByName('txtMatkhau1')[0].value.trim();
-			var txtMatkhau2			= document.getElementsByName('txtMatkhau2')[0].value.trim();
-
-			var err = "";
-			var ok = 0;
-			var numbers = /^[0-9]+$/;
-			const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-			if (  txtHovaten.length === 0 ) {
-				err = err +  "Chưa nhập Họ và tên. " + "\n";
-				ok = 1;
-			}
-			if (  txtTendangnhap.length === 0 ) {
-				err = err +  "Chưa nhập Số CMND/CCCD. " + "\n";
-				ok = 1;
-			}
-			if (  ( txtTendangnhap.match(/^[0-9]+$/) === null ) || ( ( txtTendangnhap.length != 9) && ( txtTendangnhap.length != 12) ) ) {
-			// if( (txtTendangnhap.value.match(numbers)) && )
-				err = err +  "Số CMND/CCCD " +  txtTendangnhap + " vừa nhập không phải là số CMND/CCCD. \n";
-				ok = 1;
-			}
-			if ( ValidateEmail(txtEmail01) == false ) {
-				err = err +  "Địa chỉ Email " + txtEmail01 + " vừa nhập không phải là địa chỉ email. " + "\n";
-				ok = 1;
-			}
-			if (  ( txtEmail01.length === 0 ) || ( txtEmail01 !== txtEmail02 ) ) {
-				err = err +  "Chưa nhập Email hoặc Email chưa khớp nhau. " + "\n";
-				ok = 1;
-			}
-			if (  ( txtMatkhau1.length === 0 ) || ( txtMatkhau1 !== txtMatkhau2 ) ) {
-				err = err +  "Chưa nhập Mật khẩu hoặc mật khẩu không khớp nhau. " + "\n";
-				ok = 1;
-			}
-
-
-			if ( ok == 0) {
-				return true;
-			} else {
-				alert(err);
-				return false;
-			}
-		}
-                        </script>*@
-
-                        <!-- end document-->
                     </div>
                 </div>
             </div>

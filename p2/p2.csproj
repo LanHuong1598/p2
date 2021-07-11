@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -150,10 +151,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
-
+    <Compile Include="Authorization\CommonConstants.cs" />
+    <Compile Include="Authorization\CookiesManage.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,7 +169,10 @@
     <Compile Include="Models\Entities\priority_object.cs" />
     <Compile Include="Models\Entities\sysdiagram.cs" />
     <Compile Include="Models\Function\CryptorEngine.cs" />
+    <Compile Include="Models\Function\F_Area.cs" />
     <Compile Include="Models\Function\F_User.cs" />
+    <Compile Include="Models\Handler\SchoolRecord.cs" />
+    <Compile Include="Models\Handler\Update_informatin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +203,25 @@
     <Content Include="Content\login\main.css" />
     <Content Include="Content\login\material-design-iconic-font.min.css" />
     <Content Include="Content\login\select2.min.css" />
+    <Content Include="Content\StudentImage\123456.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_10_1..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_10_1.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_10_2..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_10_2..PNG" />
+    <Content Include="Content\StudentImage\123456school_record_10_2.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_11_1..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_11_1..PNG" />
+    <Content Include="Content\StudentImage\123456school_record_11_1.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_11_2..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_11_2..PNG" />
+    <Content Include="Content\StudentImage\123456school_record_11_2.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_12_1..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_12_1..PNG" />
+    <Content Include="Content\StudentImage\123456school_record_12_1.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_12_2..jpg" />
+    <Content Include="Content\StudentImage\123456school_record_12_2.jpg" />
+    <Content Include="Content\StudentImage\123456school_record_12_2.PNG" />
+    <Content Include="Content\StudentImage\123456_school_record_10_1.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -208,7 +233,6 @@
     </Content>
     <Content Include="fonts\Roboto-Medium.ttf" />
     <Content Include="fonts\HelveticaWorld-Regular.ttf" />
-
     <Content Include="Areas\Admin\Views\HomeAdmin\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Content\assets\fonts\fa-solid-900.eot" />
@@ -218,18 +242,20 @@
     <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Areas\Admin\Content\assets\fonts\Pe-icon-7-stroke.woff" />
-
     <Content Include="Areas\Admin\Views\web.config" />
-
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -247,25 +273,23 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-
     <Content Include="Views\Home\ForgetPassword.cshtml" />
     <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\User\Update_Information.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Models\" />
-
     <Content Include="Views\Home\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Content\StudentImage\" />
-
+    <Folder Include="Content\login\StudentImage\12345676\" />
+    <Folder Include="Content\login\StudentImage\12345678\" />
+    <Folder Include="Content\login\StudentImage\321\" />
+    <Folder Include="Content\login\StudentImage\654\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

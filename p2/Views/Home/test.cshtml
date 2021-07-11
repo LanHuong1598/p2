@@ -1,10 +1,18 @@
-﻿
-@using (Html.BeginForm("Upfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <label>Title:</label>
-               
-      <label>Upload Image</label>
-      <input type="file" id="file" name="file">
-       <button type="submit">Create</button>
-}
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/Home/up">
+
+        <input type="file" name="school_record_10_1" id="school_record_10_1" multiple />
+        <input type="text" name="school_record_10_1" id="school_record_10_1"  />
+        <input type="text" name="id" id="id" />
+        <button type="submit"> đăng nhập</button>
+
+
+    </form>
+
+
+</body>
+</html>
 
