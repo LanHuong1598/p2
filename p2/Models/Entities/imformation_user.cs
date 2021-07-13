@@ -11,9 +11,16 @@ namespace p2.Models.Entities
         [StringLength(15)]
         public string id { get; set; }
 
-        public int? sex { get; set; }
+        [StringLength(15)]
+        public string sex { get; set; }
 
         public string name { get; set; }
+
+        public string first_name { get; set; }
+
+        public string last_name { get; set; }
+
+        public string middle_name { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? date_of_birth { get; set; }
@@ -44,7 +51,7 @@ namespace p2.Models.Entities
         [StringLength(15)]
         public string permanent_residence { get; set; }
 
-        public int? enrollment_group { get; set; }
+        public int? admission_group { get; set; }
 
         public string place_of_study_10 { get; set; }
 
@@ -55,6 +62,8 @@ namespace p2.Models.Entities
         public int? year_of_graduation { get; set; }
 
         public int? priority_object { get; set; }
+
+        public int? area_object { get; set; }
 
         [StringLength(15)]
         public string area { get; set; }
@@ -118,5 +127,15 @@ namespace p2.Models.Entities
         public string school_record_12_1 { get; set; }
 
         public string school_record_12_2 { get; set; }
+
+        [StringLength(50)]
+        public string exam_id { get; set; }
+
+        public int lock_ { get; set; }
+
+        public double? total_mark { get; set; }
+
+        [StringLength(10)]
+        public string room_id { get; set; }
     }
 }

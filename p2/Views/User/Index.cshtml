@@ -44,6 +44,7 @@
     <!-- Icons font CSS-->
     <link href="~/Content/login/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="~/Content/login/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/custome.css" rel="stylesheet" media="all"/> 
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Vendor CSS-->
@@ -53,7 +54,7 @@
     <link href="~/Content/login/main.css" rel="stylesheet" media="all">
 </head>
 <body class="bg-gra-02">
-    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/User/Update_Information">
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/User/Index">
         <!-- Menu-->
         <div class="main" id="main">
             <div class="container">
@@ -63,7 +64,7 @@
                 <nav>
                     <div class="nav-fostrap">
                         <ul>
-                            <li><a href="Home/Logout">Đăng xuất (@ViewBag.Name)</a></li>
+                            <li><a href="/Home/Logout">Đăng xuất (@ViewBag.Name)</a></li>
                            
                             <li><a href="">Đổi mật khẩu</a></li>
 
@@ -105,16 +106,35 @@
                                 <div class="input-group">
                                     <label class="label">Giới tính (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="p-t-10">
-                                        <label class="radio-container m-r-45">
-                                            Nam
-                                            <input type="radio" name="sex" id="sex" value="1">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">
-                                            Nữ
-                                            <input type="radio" name="sex" id="sex" value="2" checked="">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                        @{
+                                            if (user.sex == "Nam")
+                                            {
+                                                <label class="radio-container m-r-45">
+                                                    Nam
+                                                    <input type="radio" name="sex" id="sex" value="Nam" checked="">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container">
+                                                    Nữ
+                                                    <input type="radio" name="sex" id="sex" value="Nữ">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio-container m-r-45">
+                                                    Nam
+                                                    <input type="radio" name="sex" id="sex" value="Nam" >
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container">
+                                                    Nữ
+                                                    <input type="radio" name="sex" id="sex" value="Nữ" checked="">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            }
+                                        }
+
                                     </div>
                                 </div>
                             </div>
@@ -143,117 +163,116 @@
                                         <select id="ethnic" required name="ethnic" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px; color : #555;">
                                             <option selected="selected" value="">Chưa chọn</option>
 
-                                            <option value="01">Kinh</option>
+                                            <option value="Kinh">Kinh</option>
 
-                                            <option value="02">Tày</option>
+                                            <option value="Tày">Tày</option>
 
-                                            <option value="03">Thái</option>
+                                            <option value="Thái">Thái</option>
 
-                                            <option value="04">Hoa</option>
+                                            <option value="Hoa">Hoa</option>
 
-                                            <option value="05">Khmer</option>
+                                            <option value="Khmer">Khmer</option>
 
-                                            <option value="06">Mường</option>
+                                            <option value="Mường">Mường</option>
 
-                                            <option value="07">Nùng</option>
+                                            <option value="Nùng">Nùng</option>
 
-                                            <option value="08">Mông</option>
+                                            <option value="Mông">Mông</option>
 
-                                            <option value="09">Dao</option>
+                                            <option value="Dao">Dao</option>
 
-                                            <option value="10">Gia Rai</option>
+                                            <option value="Gia Rai">Gia Rai</option>
 
-                                            <option value="11">Ngái</option>
+                                            <option value="Ngái">Ngái</option>
 
-                                            <option value="12">Ê Đê</option>
+                                            <option value="Ê Đê">Ê Đê</option>
 
-                                            <option value="13">Ba Na</option>
+                                            <option value="Ba Na">Ba Na</option>
 
-                                            <option value="14">Xơ Đăng</option>
+                                            <option value="Xơ Đăng">Xơ Đăng</option>
 
-                                            <option value="15">Sán Chay</option>
+                                            <option value="Sán Chay">Sán Chay</option>
 
-                                            <option value="16">Cơ Ho</option>
+                                            <option value="Cơ Ho">Cơ Ho</option>
 
-                                            <option value="17">Chăm</option>
+                                            <option value="Chăm">Chăm</option>
 
-                                            <option value="18">Sán Dìu</option>
+                                            <option value="Sán Dìu">Sán Dìu</option>
 
-                                            <option value="19">Hrê</option>
+                                            <option value="Hrê">Hrê</option>
 
-                                            <option value="20">Mnông</option>
+                                            <option value="Mnông">Mnông</option>
 
-                                            <option value="21">Raglay</option>
+                                            <option value="Raglay">Raglay</option>
 
-                                            <option value="22">Xtiêng</option>
+                                            <option value="Xtiêng">Xtiêng</option>
 
-                                            <option value="23">Bru Vân Kiều</option>
+                                            <option value="Bru Vân Kiều">Bru Vân Kiều</option>
 
-                                            <option value="24">Thổ (4)</option>
+                                            <option value="Thổ (4)">Thổ (4)</option>
 
-                                            <option value="25">Giáy</option>
+                                            <option value="Giáy">Giáy</option>
 
-                                            <option value="26">Cơ Tu</option>
+                                            <option value="Cơ Tu">Cơ Tu</option>
 
-                                            <option value="27">Gié Triêng</option>
+                                            <option value="Gié Triêng">Gié Triêng</option>
 
-                                            <option value="28">Mạ</option>
+                                            <option value="Mạ">Mạ</option>
 
-                                            <option value="29">Khơ mú</option>
+                                            <option value="Khơ mú">Khơ mú</option>
 
-                                            <option value="30">Co</option>
+                                            <option value="Co">Co</option>
 
-                                            <option value="31">Tà Ôi</option>
+                                            <option value="Tà Ôi">Tà Ôi</option>
 
-                                            <option value="32">Chơ Ro</option>
+                                            <option value="Chơ Ro">Chơ Ro</option>
 
-                                            <option value="33">Kháng</option>
+                                            <option value="Kháng">Kháng</option>
 
-                                            <option value="34">Xinh Mun</option>
+                                            <option value="Xinh Mun">Xinh Mun</option>
 
-                                            <option value="35">Hà Nhì</option>
+                                            <option value="Hà Nhì">Hà Nhì</option>
 
-                                            <option value="36">Chu Ru</option>
+                                            <option value="Chu Ru">Chu Ru</option>
 
-                                            <option value="37">Lào</option>
+                                            <option value="Lào">Lào</option>
 
-                                            <option value="38">La Chí</option>
+                                            <option value="La Chí">La Chí</option>
 
-                                            <option value="39">La Ha</option>
+                                            <option value="La Ha">La Ha</option>
 
-                                            <option value="40">Phù Lá</option>
+                                            <option value="Phù Lá">Phù Lá</option>
 
-                                            <option value="41">La Hủ</option>
+                                            <option value="La Hủ">La Hủ</option>
 
-                                            <option value="42">Lự</option>
+                                            <option value="Lự">Lự</option>
 
-                                            <option value="43">Lô Lô</option>
+                                            <option value="Lô Lô">Lô Lô</option>
 
-                                            <option value="44">Chứt</option>
+                                            <option value="Chứt">Chứt</option>
 
-                                            <option value="45">Mảng</option>
+                                            <option value="Mảng">Mảng</option>
 
-                                            <option value="46">Pà Thẻn</option>
+                                            <option value="Pà Thẻn">Pà Thẻn</option>
 
-                                            <option value="47">Cơ Lao</option>
+                                            <option value="Cơ Lao">Cơ Lao</option>
 
-                                            <option value="48">Cống</option>
+                                            <option value="Cống">Cống</option>
 
-                                            <option value="49">Bố Y</option>
+                                            <option value="Bố Y">Bố Y</option>
 
-                                            <option value="50">Si La</option>
+                                            <option value="Si La">Si La</option>
 
-                                            <option value="51">Pu Péo</option>
+                                            <option value="Pu Péo">Pu Péo</option>
 
-                                            <option value="52">Brâu</option>
+                                            <option value="Brâu">Brâu</option>
 
-                                            <option value="53">Ơ Đu</option>
+                                            <option value="Ơ Đu">Ơ Đu</option>
 
-                                            <option value="54">Rơ Măm</option>
+                                            <option value="Rơ Măm">Rơ Măm</option>
 
-                                            <option value="55">Người nước ngoài</option>
-
-                                            <option value="56">Không xác định</option>
+                             
+                                            
                                             <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 133.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDantoc-op-container"><span class="select2-selection__rendered" id="select2-optDantoc-op-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                         </select>
 
@@ -263,21 +282,26 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Ảnh hồ sơ (*.jpg *.jpeg, tỷ lệ 4:6) (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="input-group js-input-file">
-                                        <input required type="file" id="fileimage" name="fileimage" onchange="loadImage(event)" accept="image/*">
-                                        <input type="text" name="txtimgAnh" hidden="" value="">
-
+                                        <input required class="form-control-file" type="file" id="fileimage" name="fileimage"  onchange="loadImage(event)" accept="image/*">
+                                       
+                                       
+                                    
+                                     
 
                                     </div>
+
                                 </div>
+
                             </div>
-                            <div class="col-2">
+
+                            <div class="col-3">
                                 <!-- Ảnh thí sinh -->
                                 <div class="input-group right">
-                                    <img id="avatar" src="@user.image" width="115" height="150">
+                                    <img id="avatar" name="avatar" src="@user.image" width="115" height="150">
                                 </div>
                             </div>
                         </div>
@@ -296,25 +320,31 @@
                                 <div class="input-group">
                                     <span style="padding-top:50px;"> Tỉnh: </span>
                                     <select name="provincial" id="provincial" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:240px">
-                                        @foreach (var item in ViewBag.Area)
-                                        {
-                                            if (@item.level == 1)
+                                        @{
+                                            if (user.area == null)
                                             {
-                                                <option value="@item.id">@item.name</option>
+
+                                                <option value="" selected="selected">-----</option>
+                                                foreach (var item in ViewBag.Provincials)
+                                                {
+
+                                                    <option value="@item.id">@item.name</option>
+
+                                                }
                                             }
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span style="padding-top:50px;"> Huyện : </span>
-                                    <select name="district" id="district" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
-                                        @foreach (var item in ViewBag.Area)
-                                        {
-                                            if (@item.level == 2)
+                                            else
                                             {
-                                                <option value="@item.id"> @item.name </option>
+                                                foreach (var item in ViewBag.Provincials)
+                                                {
+                                                    if (item.id == ViewBag.ProvincialID)
+                                                    {
+                                                        <option value="@item.id" selected>@item.name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.id">@item.name</option>
+                                                    }
+                                                }
                                             }
                                         }
 
@@ -323,13 +353,59 @@
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
+                                    <span style="padding-top:50px;"> Huyện : </span>
+                                    <select name="district" id="district" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                        @{
+                                            if (user.area == null)
+                                            {
+                                                <option value="">-----</option>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.Districts)
+                                                {
+                                                    if (item.id == ViewBag.DistrictID)
+                                                    {
+                                                        <option selected="selected" value="@item.id"> @item.name </option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.id">@item.name </option>
+                                                    }
+
+
+                                                }
+                                            }
+                                        }
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
                                     <span style="padding-top:50px;"> Xã : </span>
                                     <select required name="area" id="area" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
-                                        @foreach (var item in ViewBag.Area)
-                                        {
-                                            if (@item.level == 3)
+                                        @{
+                                            if (user.area == null)
                                             {
-                                                <option value="@item.id">@item.name</option>
+                                                <option value="">-----</option>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.Communes)
+                                                {
+                                                    if (item.id == ViewBag.DistrictID)
+                                                    {
+                                                        <option selected="selected" value="@item.id">@item.name </option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.id">@item.name </option>
+                                                    }
+
+
+                                                }
                                             }
                                         }
                                     </select>
@@ -371,30 +447,33 @@
                                     <label required class="label">Đối tượng ưu tiên (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="optDoituong" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
-                                            <option selected="selected" value="">Chưa chọn</option>
+                                        <select required name="priority_object" id="priority_object" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            @{
+                                                if (user.priority_object == null)
 
-                                            <option value="1">Không ưu tiên</option>
-
-                                            <option value="2">Đối tượng 01</option>
-
-                                            <option value="3">Đối tượng 02</option>
-
-                                            <option value="4">Đối tượng 03</option>
-
-                                            <option value="5">Đối tượng 04</option>
-
-                                            <option value="6">Đối tượng 05</option>
-
-                                            <option value="7">Đối tượng 06</option>
-
-                                            <option value="8">Đối tượng 07</option>
-
-                                            <option value="9">Ưu tiên xét tuyển</option>
-
-                                            <option value="10">Dự bị dân tộc</option>
-
-                                            <option value="11">30A</option>
+                                                {
+                                                    <option selected="selected" value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.Priority_Object)
+                                                    {
+                                                        <option value="@item.id">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.Priority_Object)
+                                                    {
+                                                        if (user.priority_object == item.id)
+                                                        {
+                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.id">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
 
                                         </select>
 
@@ -406,16 +485,35 @@
                                     <label class="label">Khu vực (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="optKhuvuc" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
-                                            <option selected="selected" value="">Chưa chọn</option>
+                                        <select required name="area_object" id="area_object" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            @{
+                                                if (user.area_object == null)
+                                                {
+                                                    <option selected="selected" value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.Area_Object)
+                                                    {
+                                                        <option value="@item.id">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.Area_Object)
+                                                    {
+                                                        if (user.area_object == item.id)
+                                                        {
+                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.id">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
 
-                                            <option value="1">Khu vực 1 (KV1)</option>
 
-                                            <option value="2">Khu vực 2 - nông thôn (KV2-NT)</option>
 
-                                            <option value="3">Khu vực 2 (KV2)</option>
-
-                                            <option value="4">Khu vực 3 (KV3)</option>
 
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -728,21 +826,29 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*">
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*" >
+                                    
+                                 
+                                    
                                 </div>
                                 <img id="img_hocba" src="@user.school_record_10_1" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
+                                    <input  required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
+                                  
+                                
+
                                 </div>
                                 <img src="@user.school_record_10_2" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
+
+                                    <input  required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
+                                   
                                 </div>
                                 <img src="@user.school_record_11_1" style="width:80%" width="200" height="250">
                             </div>
@@ -753,21 +859,27 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
+                                    <input  required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
+                                   
                                 </div>
                                 <img id="img_hocba" src="@user.school_record_11_2" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
+                                    <input  required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
+                                 
                                 </div>
+                                
                                 <img src="@user.school_record_12_1" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
+                                    <input  required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
+                                    
+                                    @*<label class="label--file" for="school_record_12_2">Chọn file ảnh</label>
+                                    <input class="input-file" type="text" name="txtshool_record_12_2" hidden="" value="">*@
                                 </div>
                                 <img  src="@user.school_record_12_2" style="width:80%" width="200" height="250">
                             </div>
@@ -781,13 +893,37 @@
 
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="enrollment_group" id="enrollment_group" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
+                                        <select required name="admission_group" id="admission_group" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
                                                 style="height:50px;">
-                                            <option selected="selected" value="">Chưa chọn</option>
 
-                                            <option value="0">A0</option>
+                                            @{
+                                                if (user.admission_group == null)
+                                                {
+                                                    <option selected="selected" value="">-----</option>
+                                                    foreach (var item in ViewBag.Admission_group)
+                                                    {
+                                                        <option value="@item.id">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">-----</option>
+                                                    foreach (var item in ViewBag.Admission_group)
+                                                    {
 
-                                            <option value="1">A1</option>
+                                                        if (item.id == user.admission_group)
+                                                        {
+                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option  value="@item.id">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                           
 
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -857,6 +993,8 @@
     <div style="position: absolute; top: 0px;"></div>
 
     <script>
+
+
         var loadFile = function (e) {
             var coltag = $(e).parent().parent();
             var reader = new FileReader();
@@ -864,6 +1002,7 @@
                 var output = $(coltag).children('img')[0];
                 console.log(output.src);
                 $(output).attr('src', reader.result);
+                $("txtimgAnh").val("1");
             };
             reader.readAsDataURL(event.target.files[0]);
 
@@ -884,15 +1023,50 @@
     <script type="text/javascript">
         window.onload = function () {
             var dantoc = '@Html.Raw(HttpUtility.JavaScriptStringEncode(user.ethnic))'
-            alert(dantoc);
-            document.querySelectorAll('option').forEach(function (e1) {
+
+            /*document.querySelectorAll('option').forEach(function (e1) {
                 if ($(e1).text().trim() == dantoc.trim()) {
                     $(e1).attr('selected', 'selected');
 
                 }
-            })
+            })*/
+            $("#ethnic").find('option').each(function () {
+                if (($(this).val()) == dantoc )
+                {
+                    $(this).attr('selected', 'selected');
+                }
+            });
 
+            var avatar = '@user.image';
+            if (avatar != null || avatar != undefined) {
+                $('#fileimage').removeAttr('required');
+            }
+            var school_record_10_1 = '@user.school_record_10_1';
+            if (school_record_10_1 != null || school_record_10_1 != undefined) {
+                $('#school_record_10_1').removeAttr('required');
+            }
 
+            var school_record_10_2 = '@user.school_record_10_2';
+            if (school_record_10_2 != null || school_record_10_2 != undefined) {
+                $('#school_record_10_2').removeAttr('required');
+
+            }
+            var school_record_11_1 = '@user.school_record_11_1';
+            if (school_record_11_1!= null || school_record_11_1 != undefined) {
+                $('#school_record_11_1').removeAttr('required');
+            }
+            var school_record_11_2 = '@user.school_record_11_2';
+            if (school_record_11_2 != null || school_record_11_2 != undefined) {
+                $('#school_record_11_2').removeAttr('required');
+            }
+            var school_record_12_1 = '@user.school_record_12_1';
+            if (school_record_12_1 != null || school_record_12_1 != undefined) {
+                $('#school_record_12_1').removeAttr('required');
+            }
+            var school_record_12_2 = '@user.school_record_12_2';
+            if (school_record_12_2 != null || school_record_12_2 != undefined) {
+                $('#school_record_12_2').removeAttr('required');
+            }
         }
 
        
@@ -905,6 +1079,8 @@
             $("#provincial").change(function () {
                 $.get("/User/getDistrictsByProvincial", { provincialID: $("#provincial").val() }, function (data) {
                     $("#district").empty()
+                    $("#district").append("<option selected value=''>" + "-----" + "</option>")
+                    $("#area").append("<option selected value=''>" + "-----" + "</option>")
                     $.each(data, function (index, row) {
                         
                         $("#district").append("<option value='" +row.id +"'>" + row.name + "</option>")
@@ -916,6 +1092,7 @@
             $("#district").change(function () {
                 $.get("/User/getCommunesByDistrict", { districtID: $("#district").val() }, function (data) {
                     document.getElementById("area").innerHTML = "";
+                    $("#area").append("<option selected value=''>" + "-----" + "</option>")
                     $.each(data, function (index, row) {
                         $("#area").append("<option value='" + row.id + "'>" + row.name + "</option>")
                         console.log('va0')
@@ -940,7 +1117,18 @@
         
     </script>
     <script>
-
+        $('#chooseFile').bind('change', function () {
+            var filename = $("#chooseFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
     </script>
+ 
 </body>
 </html>

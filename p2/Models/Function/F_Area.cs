@@ -35,6 +35,24 @@ namespace p2.Models.Function
             Districts = dbcontext.areas.Where(x => x.parent == provincialID).ToList();
             return Districts;
         }
+        public string getDistrictIDByCommune(string communeID)
+        {
+            dbcontext = new DBContext();
+            area are = dbcontext.areas.Find(communeID);
+            string id = are.parent;     
+            return id;
+        }
+
+        
+        public string getProvincialIDByDistrict(string districtID)
+        {
+            dbcontext = new DBContext();
+            string id = "";
+            area district = dbcontext.areas.Find(districtID);
+            id = district.parent;
+            return id;
+        }
+
         public List<area> getCommunes()
         {
             dbcontext = new DBContext();
