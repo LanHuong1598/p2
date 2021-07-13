@@ -9,14 +9,16 @@ namespace p2.Models.Entities
     [Table("area")]
     public partial class area
     {
-        [StringLength(10)]
+        [StringLength(50)]
         public string id { get; set; }
 
         public int? level { get; set; }
 
         public string name { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string parent { get; set; }
+
+        public int? region { get; set; }
     }
 }

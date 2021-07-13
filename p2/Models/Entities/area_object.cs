@@ -8,13 +8,12 @@ namespace p2.Models.Entities
 
     public partial class area_object
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
-        public int? name { get; set; }
+        public string name { get; set; }
 
         public string describe { get; set; }
 
-        public int? mark { get; set; }
+        public double? mark { get; set; }
     }
 }

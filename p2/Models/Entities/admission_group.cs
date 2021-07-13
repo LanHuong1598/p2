@@ -11,7 +11,8 @@ namespace p2.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
-        public int? name { get; set; }
+        [StringLength(50)]
+        public string name { get; set; }
 
         public string describe { get; set; }
     }

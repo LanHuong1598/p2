@@ -1,0 +1,19 @@
+﻿.label--file {
+    display: block;
+    width: 6vw;
+    max-width: 300px;
+    margin-left: 0 auto;
+    background-color: slateblue;
+    border-radius: 2px;
+    font-size: 1em;
+    line-height: 2.0em;
+    text-align: center;
+}
+
+    .label--file:hover {
+        background-color: cornflowerblue;
+    }
+
+    .label--file:active {
+        background-color: mediumaquamarine;
+    }
