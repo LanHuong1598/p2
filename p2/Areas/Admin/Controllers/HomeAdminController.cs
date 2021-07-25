@@ -3,44 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using p2.Models.Function;
-using p2.Models.Entities;
 using p2.Areas.Admin.Models.Function;
+using p2.Authorization;
+
 namespace p2.Areas.Admin.Controllers
 {
-    public class HomeAdminController : Controller
+    public class HomeAdminController : BaseAdminController
     {
-        // GET: Admin/HomeAdmin
+        // GET: Admin/Home
         public ActionResult Index()
         {
-            F_Candidate f_candi = new F_Candidate();
-            F_User f_User = new F_User();
-            var inforStudents = f_User.getUsers();
-            ViewBag.Users = inforStudents;
-            ViewBag.Candidates = f_candi.getInfor();
             return View();
-        }
-        public ActionResult Dashboard()
-        {
-            return View();
-        }
-        public ActionResult StudentList()
-        {
-            F_Candidate f_candi = new F_Candidate();
-            F_User f_User = new F_User();
-            var inforStudents = f_User.getUsers();
-            ViewBag.Users = inforStudents;
-            ViewBag.Candidates = f_candi.getInfor();
-            return View();
-        }
-        public ActionResult Logout()
-        {
-            return RedirectToAction("Index","Home",new { area = "" });
         }
 
-        public ActionResult _PanelView()
+        public ActionResult Dashboard()
         {
-            return PartialView("_Panel");
+
+            ViewBag.layout = "dashboard";
+            F_Candidate f_candi = new F_Candidate();
+            ViewBag.List_Student_Commit = f_candi.getInfor();
+            ViewBag.Statistic = f_candi.stats();
+
+            var accountLoginAdmin = CookiesManage.getAdmin();
+            ViewBag.nameadmin = accountLoginAdmin.name;
+            return View();
+        }
+        public JsonResult getNameAdmin()
+        {
+            var accountLoginAdmin = CookiesManage.getAdmin();
+            ViewBag.nameadmin = accountLoginAdmin.name;
+            return Json(accountLoginAdmin.name, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult History_Update_Student()
+        {
+            ViewBag.layout = "history";
+            F_Candidate f_candi = new F_Candidate();
+            ViewBag.List_Student_Commit = f_candi.getInfor();
+            return View();
+        }
+        public ActionResult LogoutAdmin()
+        {
+            Session.Add(CommonConstants.ADMIN_SESSION, null);
+            return Redirect("/Home/Index");
+           
+        }
+        public ActionResult List_detail_update(Guid code)
+        {
+            ViewBag.layout = "history";
+            F_Candidate f_candi = new F_Candidate();
+            ViewBag.List_Detail_Update = f_candi.getList_detail_update(code);
+            return View();
+        }
+        public ActionResult Duplicate_IdentityCard()
+        {
+            ViewBag.layout = "duplicate";
+            F_Candidate f_candi = new F_Candidate();
+            var result = f_candi.getDuplicateIdentity();
+            ViewBag.Duplicates = result;
+            return View();
         }
     }
 }

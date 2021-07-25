@@ -8,64 +8,73 @@ namespace p2.Models.Function
     public class F_Area
     {
         DBContext dbcontext;
-        public List<area> getAreas()
+        
+        public List<province> getProvincials()
         {
             dbcontext = new DBContext();
-            return dbcontext.areas.ToList();
-        }
-        public List<area> getProvincials()
-        {
-            dbcontext = new DBContext();
-            List<area> provincials = new List<area>();
-            provincials = dbcontext.areas.Where(x => x.level == 1).ToList();
-            return provincials;
+            return dbcontext.provinces.ToList();
         }
 
-        public List<area> getDistricts()
+        public List<district> getDistricts()
         {
             dbcontext = new DBContext();
-            List<area> Districts = new List<area>();
-            Districts = dbcontext.areas.Where(x => x.level == 2).ToList();
+            
+            return dbcontext.districts.ToList();
+        }
+        public List<district> getDistrictsByProvincial(string provincialcode)
+        {
+            dbcontext = new DBContext();
+            List<district> Districts = new List<district>();
+            Districts = dbcontext.districts.Where(x => x.provincecode == provincialcode).ToList();
             return Districts;
         }
-        public List<area> getDistrictsByProvincial(string provincialID)
+        public string getDistrictCodeByTown(string towncode)
         {
             dbcontext = new DBContext();
-            List<area> Districts = new List<area>();
-            Districts = dbcontext.areas.Where(x => x.parent == provincialID).ToList();
-            return Districts;
-        }
-        public string getDistrictIDByCommune(string communeID)
-        {
-            dbcontext = new DBContext();
-            area are = dbcontext.areas.Find(communeID);
-            string id = are.parent;     
+            town tow = dbcontext.towns.Find(towncode);
+            string id = tow.districtcode;     
             return id;
         }
 
         
-        public string getProvincialIDByDistrict(string districtID)
+        public string getProvincialCodeByDistrict(string districtcode)
         {
             dbcontext = new DBContext();
             string id = "";
-            area district = dbcontext.areas.Find(districtID);
-            id = district.parent;
+            district district = dbcontext.districts.Find(districtcode);
+            id = district.provincecode;
             return id;
         }
 
-        public List<area> getCommunes()
+        public List<town> getTowns()
         {
             dbcontext = new DBContext();
-            List<area> Communes = new List<area>();
-            Communes = dbcontext.areas.Where(x => x.level == 3).ToList();
-            return Communes;
+
+            return dbcontext.towns.ToList();
         }
-        public List<area> getCommunesByDistrict(string districtID)
+
+        public town getTownbycode(string code)
         {
             dbcontext = new DBContext();
-            List<area> Communes = new List<area>();
-            Communes = dbcontext.areas.Where(x => x.parent == districtID ).ToList();
-            return Communes;
+            return dbcontext.towns.Find(code);
+        }
+        public district getDistrictbycode(string code)
+        {
+            dbcontext = new DBContext();
+            return dbcontext.districts.Find(code);
+        }
+        public province getProvincebycode(string code)
+        {
+            dbcontext = new DBContext();
+            return dbcontext.provinces.Find(code);
+        }
+
+        public List<town> getTownsByDistrict(string districtcode)
+        {
+            dbcontext = new DBContext();
+            List<town> towns = new List<town>();
+            towns = dbcontext.towns.Where(x => x.districtcode == districtcode).ToList();
+            return towns;
         }
     }
 }

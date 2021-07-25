@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Title Page-->
+    <title>Hồ sơ đăng ký</title>
+    <link rel="icon" type="image/png" href="~/Content/img/logo.jpg">
+    <script src="~/Areas/Admin/Content/assets/scripts/jquery.min.js"></script>
+    <!-- Icons font CSS-->
+    <link href="~/Content/login/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/custome.css" rel="stylesheet" media="all" />
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="~/Content/login/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/Content/login/main.css" rel="stylesheet" media="all">
+</head>
+<body>
+    
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w960">
+            @{
+                if (ViewBag.checkCMND != null)
+                {
+                    var check = (int)ViewBag.checkCMND;
+                    if (check == -1)
+                    {
+                        <h2 style="color:Red">
+                            Thông tin của bạn đã bị trùng số CMND với thí sinh khác
+                            <br />
+                            Liên hệ lại với chúng tôi hoặc cập nhật lại số CMND
+                        </h2>
+                    }
+                }
+
+            }
+
+
+
+            <div class="card card-4">
+                <a href="Index" style="width:500px ; margin-bottom:50px;margin-top:50px; margin-left:250px ; text-align:center" class="btn btn--radius-2 btn--blue" type="submit" name="butNophoso">Cập nhật hồ sơ</a>
+                <br />
+                <a href="ViewUser" style="width:500px ; margin-bottom:50px; margin-left:250px; text-align:center" class="btn btn--radius-2 btn--blue" name="butNophoso">Xem chi tiết hồ sơ</a>
+            </div>
+        </div>
+    </div>
+
+   
+
+</body>
+</html>

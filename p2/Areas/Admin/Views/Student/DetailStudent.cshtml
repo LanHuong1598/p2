@@ -1,0 +1,1136 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+@using p2.Models.Entities;
+@using p2.Models.Handler;
+@{
+
+    Information_student user = ViewBag.User;
+    List<district> Districts = (List<district>)ViewBag.Districts;
+    record record10_1 = (record)ViewBag.Record10_1;
+    record record10_2 = (record)ViewBag.Record10_2;
+    record record11_1 = (record)ViewBag.Record11_1;
+    record record11_2 = (record)ViewBag.Record11_2;
+    record record12_1 = (record)ViewBag.Record12_1;
+    record record12_2 = (record)ViewBag.Record12_2;
+
+
+}
+
+@{
+    string ngaysinhdate = null;
+    if (user.date_of_birth != null)
+    {
+        string ngaysinhStr = user.date_of_birth.ToString();
+        DateTime date = (Convert.ToDateTime(ngaysinhStr));
+        string day = "-" + date.Day, month = "-" + date.Month;
+        if (date.Day < 10)
+        {
+            day = "-0" + date.Day;
+
+        }
+        if (date.Month < 10)
+        {
+            month = "-0" + date.Month;
+
+        }
+
+        ngaysinhdate = date.Year + month + day;
+
+    }
+}
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Title Page-->
+    <title>Hồ sơ đăng ký</title>
+    <link rel="icon" type="image/png" href="~/Content/img/logo.jpg">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Icons font CSS-->
+    <link href="~/Content/login/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/custome.css" rel="stylesheet" media="all" />
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="~/Content/login/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/login/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/Content/login/main.css" rel="stylesheet" media="all">
+</head>
+<body class="bg-gra-02">
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/User/Index">
+        <!-- Menu-->
+        <div class="main" id="main">
+            <div class="container">
+                <div class="logo">
+                    <a class="ahref" href="#"><img src="~/Content/img/logo.jpg" width="45" height="45"></a>
+                </div>
+                <nav>
+                    <div class="nav-fostrap">
+                       
+                      
+                        <ul>
+                            <li> <a href="/Admin/HomeAdmin/Dashboard" class="">Quay lại</a></li>
+                            <li> <a href=""> Xem thông tin đăng nhập</a></li>
+                        </ul>
+                    </div> <!-- Dành cho Mobile -->
+               
+
+                </nav>
+            </div>
+
+        </div>
+
+        <script src="~/Scripts/jquery.min.js"></script>
+
+
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w960">
+                <div class="card card-4">
+                    <h1 class="title1">HỒ SƠ ĐĂNG KÝ XÉT TUYỂN</h1>
+                    @{
+                        if (ViewBag.Mess != null)
+                        {
+                            <p style="text-align:center;"><font size="4" style="color:green">@ViewBag.Mess</font></p>
+                        }
+                        else
+                        {
+                            <p style="text-align:center;"><font size="4" color="#ff3300">Thí sinh chưa nộp hồ sơ</font></p>
+                        }
+                    }
+
+                    <div class="card-body">
+
+                        <h2 class="title">A. Thông tin cá nhân</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên thí sinh (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="name" placeholder="" value="@user.name">
+                                    <input class="input--style-4" type="text" id="code" name="code" hidden value="@user.code" />
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Giới tính (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="p-t-10">
+                                        @{
+                                            if (user.sex == "Nam")
+                                            {
+                                                <label class="radio-container m-r-45">
+                                                    Nam
+                                                    <input type="radio" name="sex" id="sex" value="Nam" checked="">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container">
+                                                    Nữ
+                                                    <input type="radio" name="sex" id="sex" value="Nữ">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio-container m-r-45">
+                                                    Nam
+                                                    <input type="radio" name="sex" id="sex" value="Nam">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container">
+                                                    Nữ
+                                                    <input type="radio" name="sex" id="sex" value="Nữ" checked="">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Số CMND (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="identity_card" id="identity_card" placeholder="" value="@user.identity_card">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ngày sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    @{
+                                        if (user.date_of_birth != null)
+                                        {
+                                            <div class="input-group-icon">
+                                                <input class="input--style-4" type="date" name="date_of_birth" value="@ngaysinhdate">
+                                                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="input-group-icon">
+                                                <input class="input--style-4" type="date" name="date_of_birth" value="">
+                                                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                            </div>
+
+                                        }
+
+
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nơi sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="place_of_birth" id="place_of_birth" placeholder="" value="@user.place_of_birth">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+
+                                    <label class="label">Dân tộc (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple" style="width:50%">
+                                        <select id="ethnic" required name="ethnic" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px; color : #555;">
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option value="Kinh">Kinh</option>
+
+                                            <option value="Tày">Tày</option>
+
+                                            <option value="Thái">Thái</option>
+
+                                            <option value="Hoa">Hoa</option>
+
+                                            <option value="Khmer">Khmer</option>
+
+                                            <option value="Mường">Mường</option>
+
+                                            <option value="Nùng">Nùng</option>
+
+                                            <option value="Mông">Mông</option>
+
+                                            <option value="Dao">Dao</option>
+
+                                            <option value="Gia Rai">Gia Rai</option>
+
+                                            <option value="Ngái">Ngái</option>
+
+                                            <option value="Ê Đê">Ê Đê</option>
+
+                                            <option value="Ba Na">Ba Na</option>
+
+                                            <option value="Xơ Đăng">Xơ Đăng</option>
+
+                                            <option value="Sán Chay">Sán Chay</option>
+
+                                            <option value="Cơ Ho">Cơ Ho</option>
+
+                                            <option value="Chăm">Chăm</option>
+
+                                            <option value="Sán Dìu">Sán Dìu</option>
+
+                                            <option value="Hrê">Hrê</option>
+
+                                            <option value="Mnông">Mnông</option>
+
+                                            <option value="Raglay">Raglay</option>
+
+                                            <option value="Xtiêng">Xtiêng</option>
+
+                                            <option value="Bru Vân Kiều">Bru Vân Kiều</option>
+
+                                            <option value="Thổ (4)">Thổ (4)</option>
+
+                                            <option value="Giáy">Giáy</option>
+
+                                            <option value="Cơ Tu">Cơ Tu</option>
+
+                                            <option value="Gié Triêng">Gié Triêng</option>
+
+                                            <option value="Mạ">Mạ</option>
+
+                                            <option value="Khơ mú">Khơ mú</option>
+
+                                            <option value="Co">Co</option>
+
+                                            <option value="Tà Ôi">Tà Ôi</option>
+
+                                            <option value="Chơ Ro">Chơ Ro</option>
+
+                                            <option value="Kháng">Kháng</option>
+
+                                            <option value="Xinh Mun">Xinh Mun</option>
+
+                                            <option value="Hà Nhì">Hà Nhì</option>
+
+                                            <option value="Chu Ru">Chu Ru</option>
+
+                                            <option value="Lào">Lào</option>
+
+                                            <option value="La Chí">La Chí</option>
+
+                                            <option value="La Ha">La Ha</option>
+
+                                            <option value="Phù Lá">Phù Lá</option>
+
+                                            <option value="La Hủ">La Hủ</option>
+
+                                            <option value="Lự">Lự</option>
+
+                                            <option value="Lô Lô">Lô Lô</option>
+
+                                            <option value="Chứt">Chứt</option>
+
+                                            <option value="Mảng">Mảng</option>
+
+                                            <option value="Pà Thẻn">Pà Thẻn</option>
+
+                                            <option value="Cơ Lao">Cơ Lao</option>
+
+                                            <option value="Cống">Cống</option>
+
+                                            <option value="Bố Y">Bố Y</option>
+
+                                            <option value="Si La">Si La</option>
+
+                                            <option value="Pu Péo">Pu Péo</option>
+
+                                            <option value="Brâu">Brâu</option>
+
+                                            <option value="Ơ Đu">Ơ Đu</option>
+
+                                            <option value="Rơ Măm">Rơ Măm</option>
+
+
+
+                                            <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 133.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDantoc-op-container"><span class="select2-selection__rendered" id="select2-optDantoc-op-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select>
+
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Ảnh hồ sơ (*.jpg *.jpeg, tỷ lệ 4:6) (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="input-group js-input-file">
+                                        <input required class="form-control-file" type="file" id="fileimage" name="fileimage" onchange="loadImage(event)" accept="image/*">
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-3">
+                                <!-- Ảnh thí sinh -->
+                                <div class="input-group right">
+                                    <img id="avatar" name="avatar" src="@user.image" width="115" height="150">
+                                    <input type="text" hidden id="image" name="image" value="@user.image">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label">Hộ khẩu thường chú (<text style="color:red">*</text>)</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Tỉnh: </span>
+                                    <select name="provincecode" id="provincecode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:240px">
+                                        @{
+                                            if (user.towncode == null)
+                                            {
+
+                                                <option value="" selected="selected">-----</option>
+                                                foreach (var item in ViewBag.Province)
+                                                {
+
+                                                    <option value="@item.code">@item.name</option>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.Province)
+                                                {
+                                                    if (item.code == ViewBag.ProvinceCode)
+                                                    {
+                                                        <option value="@item.code" selected>@item.name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.code">@item.name</option>
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Huyện : </span>
+                                    <select name="districtcode" id="districtcode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                        @{
+                                            if (user.towncode == null)
+                                            {
+                                                <option value="">-----</option>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.Districts)
+                                                {
+                                                    if (item.code == ViewBag.DistrictCode)
+                                                    {
+                                                        <option selected="selected" value="@item.code"> @item.name </option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.code">@item.name </option>
+                                                    }
+
+
+                                                }
+                                            }
+                                        }
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Xã : </span>
+                                    <select required name="towncode" id="towncode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                        @{
+                                            if (user.towncode == null)
+                                            {
+                                                <option value="">-----</option>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.Towns)
+                                                {
+                                                    if (item.code == ViewBag.TownCode)
+                                                    {
+                                                        <option selected="selected" value="@item.code">@item.name </option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.code">@item.name </option>
+                                                    }
+
+
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="linebreakdot">
+                        <label class="label">Nơi học trung học phổ thông (THPT) hoặc tương đương: <font style="font-style: italic; font-size: 13px;">(Nếu cả 3 năm đều học cùng trường thì chỉ cần nhập thông tin vào năm lớp 10)</font> (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 10</label>
+                                <input required class="input--style-4" type="text" name="school_address_10" id="school_address_10" value="@user.school_address_10">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Lớp 11</label>
+                                    <input required class="input--style-4" type="text" name="school_address_11" id="school_address_11" value="@user.school_address_11">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 12</label>
+                                <input required class="input--style-4" type="text" name="school_address_12" id="school_address_12" value="@user.school_address_12">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Năm tốt nghiệp THPT</label>
+                                    <input required class="input--style-4" type="text" name="school_year" id="school_year" value="@user.school_year">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">B. Thông tin phục vụ xét tuyển</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label required class="label">Đối tượng ưu tiên (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="statusmark_code" id="statusmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            @{
+                                                if (user.statusmark_code == null)
+
+                                                {
+                                                    <option selected="selected" value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.StatusMark)
+                                                    {
+                                                        <option value="@item.code">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.StatusMark)
+                                                    {
+                                                        if (user.statusmark_code == item.code)
+                                                        {
+                                                            <option selected="selected" value="@item.code">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.code">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Khu vực (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="regionmark_code" id="regionmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            @{
+                                                if (user.regionmark_code == null)
+                                                {
+                                                    <option selected="selected" value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.RegionMark)
+                                                    {
+                                                        <option value="@item.code">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">Chưa chọn</option>
+                                                    foreach (var item in ViewBag.RegionMark)
+                                                    {
+                                                        if (user.regionmark_code == item.code)
+                                                        {
+                                                            <option selected="selected" value="@item.code">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.code">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+
+
+
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="linebreakdot">
+
+
+                        <hr class="sesstionbreak">
+                        <h2 class="title">C. Thông tin liên hệ</h2>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ Email (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="email" name="email" id="email" value="@user.email">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại di động (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="phone" id="phone" value="@user.phone">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại Bố/Mẹ</label>
+                                    <input class="input--style-4" type="text" name="phone_of_parent" id="phone_of_parent" value="@user.phone_of_parent">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên người nhận thông báo (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="name_of_receiver" id="name_of_receiver" value="@user.name_of_receiver">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="address" id="address" value="@user.address">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">D. Xét tuyển</h2>
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_10_1_code" id="record_10_1_code" value="@user.record_10_1_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_10_1" id="math_10_1" placeholder="Toán" value="@user.math_10_1">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+
+                                        <input required class="input--style-4" type="text" name="physic_10_1" id="physic_10_1" placeholder="Lý" value="@user.physic_10_1">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_10_1" id="chemistry_10_1" placeholder="Hóa" value="@user.chemistry_10_1">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_10_1" id="english_10_1" placeholder="Anh" value="@user.english_10_1">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_10_2_code" id="record_10_2_code" value="@user.record_10_2_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_10_2" id="math_10_2" placeholder="Toán" value="@user.math_10_2">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_10_2" id="physic_10_2" placeholder="Lý" value="@user.physic_10_2">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_10_2" id="chemistry_10_2" placeholder="Hóa" value="@user.chemistry_10_2">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_10_2" id="english_10_2" placeholder="Anh" value="@user.english_10_2">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_11_1_code" id="record_11_1_code" value="@user.record_11_1_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_11_1" id="math_11_1" placeholder="Toán" value="@user.math_11_1">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_11_1" id="physic_11_1" placeholder="Lý" value="@user.physic_11_1">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_11_1" id="chemistry_11_1" placeholder="Hóa" value="@user.chemistry_11_1">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_11_1" id="english_11_1" placeholder="Anh" value="@user.english_11_1">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_11_2_code" id="record_11_2_code" value="@user.record_11_2_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_11_2" id="math_11_2" placeholder="Toán" value="@user.math_11_2">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_11_2" id="physic_11_2" placeholder="Lý" value="@user.physic_11_2">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_11_2" id="chemistry_11_2" placeholder="Hóa" value="@user.chemistry_11_2">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_11_2" id="english_11_2" placeholder="Anh" value="@user.english_11_2">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_12_1_code" id="record_12_1_code" value="@user.record_12_1_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_12_1" id="math_12_!" placeholder="Toán" value="@user.math_12_1">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_12_1" id="physic_12_1" placeholder="Lý" value="@user.physic_12_1">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_12_1" id="chemistry_12_1" placeholder="Hóa" value="@user.chemistry_12_1">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_12_1" id="english_12_1" placeholder="Anh" value="@user.english_12_1">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_12_2_code" id="record_12_2_code" value="@user.record_12_2_code" hidden />
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_12_2" id="math_12_2" placeholder="Toán" value="@user.math_12_2">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_12_2" id="physic_12_2" placeholder="Lý" value="@user.physic_12_2">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_12_2" id="chemistry_12_2" placeholder="Hóa" value="@user.chemistry_12_2">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_12_2" id="english_12_2" placeholder="Anh" value="@user.english_12_2">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <label class="label">File học bạ (JPG, PNG)</label>
+
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_10_1" name="link_school_record_10_1" value="@user.link_school_record_10_1">
+
+
+                                </div>
+                                <img id="img_hocba" src="@user.link_school_record_10_1" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_10_2" name="link_school_record_10_2" value="@user.link_school_record_10_2">
+
+
+                                </div>
+                                <img src="@user.link_school_record_10_2" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_11_1" name="link_school_record_11_1" value="@user.link_school_record_11_1">
+                                </div>
+                                <img src="@user.link_school_record_11_1" style="width:80%" width="200" height="250">
+                            </div>
+
+
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_11_2" name="link_school_record_11_2" value="@user.link_school_record_11_2">
+                                </div>
+                                <img id="img_hocba" src="@user.link_school_record_11_2" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_12_1" name="link_school_record_12_1" value="@user.link_school_record_12_1">
+                                </div>
+
+                                <img src="@user.link_school_record_12_1" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_12_2" name="link_school_record_12_2" value="@user.link_school_record_12_2">
+                                    @*<label class="label--file" for="school_record_12_2">Chọn file ảnh</label>
+                        <input class="input-file" type="text" name="txtshool_record_12_2" hidden="" value="">*@
+                                </div>
+                                <img src="@user.link_school_record_12_2" style="width:80%" width="200" height="250">
+                            </div>
+
+
+                        </div>
+                        <label class="label">Chọn khối xét tuyển</label>
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="enrollment_code" id="enrollment_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
+                                                style="height:50px;">
+
+                                            @{
+                                                if (user.enrollment_code == null)
+                                                {
+                                                    <option selected="selected" value="">-----</option>
+                                                    foreach (var item in ViewBag.Enrollment)
+                                                    {
+                                                        <option value="@item.code">@item.name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="">-----</option>
+                                                    foreach (var item in ViewBag.Enrollment)
+                                                    {
+
+                                                        if (item.code == user.enrollment_code)
+                                                        {
+                                                            <option selected="selected" value="@item.code">@item.name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.code">@item.name</option>
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                @*<hr class="linebreak">
+                <h4>Cam kết (<font size="4" color="#ff3300"><strong>*</strong></font>)</h4>
+                <div class="row row-space">
+                    <div class="input-group">
+                        <div class="p-t-10">
+                            <label class="radio-container justify">
+                                Tôi xin cam đoan những thông tin trên là đúng và cam kết thực hiện đúng Quy chế tuyển sinh đại học hệ chính quy; tuyển sinh cao đẳng nhóm ngành đào tạo giáo viên hệ chính quy của Bộ GDĐT và Hướng dẫn tuyển sinh đại học chính quy năm 2021 của HVKTQS. Nếu có gì sai sót tôi xin chịu trách nhiệm trước HĐTS và pháp luật.
+                                <p id="demo"></p>
+                                <input required type="checkbox" name="radCamket" id="radCamket" value="10">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>*@
+                <br>
+                <div class="row row-space">
+                    
+                  
+                        <div style="margin-left:auto" class="input-group center">
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue" type="submit" name="butNophoso" onclick="return kiemtraso();">Xác nhận</button>
+                            </div>
+                        </div>
+                   
+                  
+                </div>
+            </div>
+
+
+
+            <!-- Jquery JS-->
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <!-- Vendor JS-->
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script src="~/Scripts/moment.min.js"></script>
+            <script src="~/Scripts/daterangepicker.js"></script>
+            <!-- Main JS-->
+            <script src="~/Scripts/global.js"></script>
+
+
+            <!-- end document-->
+    </form>
+    <div style="position: absolute; top: 0px;"></div>
+
+    <script>
+
+
+        var loadFile = function (e) {
+            var coltag = $(e).parent().parent();
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = $(coltag).children('img')[0];
+                console.log(output.src);
+                $(output).attr('src', reader.result);
+                $("txtimgAnh").val("1");
+            };
+            reader.readAsDataURL(event.target.files[0]);
+
+        };
+        var loadImage = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('avatar');
+                output.src = reader.result;
+                output.hidden = false;
+                console.log(reader.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+
+        };
+
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var dantoc = '@Html.Raw(HttpUtility.JavaScriptStringEncode(user.ethnic))'
+
+            /*document.querySelectorAll('option').forEach(function (e1) {
+                if ($(e1).text().trim() == dantoc.trim()) {
+                    $(e1).attr('selected', 'selected');
+
+                }
+            })*/
+            $("#ethnic").find('option').each(function () {
+                if (($(this).val()) == dantoc )
+                {
+                    $(this).attr('selected', 'selected');
+                }
+            });
+            console.log(dantoc);
+            var avatar_src = '@user.image';
+            if (avatar_src != '' && avatar_src != null) {
+                $('#fileimage').removeAttr('required');
+            }
+            console.log(avatar_src);
+
+            var school_record_10_1_src = '@user.link_school_record_10_1';
+            if (school_record_10_1_src!='') {
+                $('#school_record_10_1').removeAttr('required');
+            }
+
+            var school_record_10_2_src = '@user.link_school_record_10_2';
+            if (school_record_10_2_src != null && school_record_10_2_src != '') {
+                $('#school_record_10_2').removeAttr('required');
+
+            }
+            var school_record_11_1_src = '@user.link_school_record_11_1';
+            if (school_record_11_1_src != null && school_record_11_1_src != '') {
+                $('#school_record_11_1').removeAttr('required');
+            }
+            var school_record_11_2_src = '@user.link_school_record_11_2';
+            if (school_record_11_2_src != null && school_record_11_2_src != '') {
+                $('#school_record_11_2').removeAttr('required');
+            }
+            var school_record_12_1_src = '@user.link_school_record_12_1';
+            if (school_record_12_1_src != null && school_record_12_1_src != '') {
+                $('#school_record_12_1').removeAttr('required');
+            }
+            var school_record_12_2_src = '@user.link_school_record_12_2';
+            if (school_record_12_2_src != null && school_record_12_2_src != '') {
+                $('#school_record_12_2').removeAttr('required');
+            }
+        }
+
+
+
+
+        $(document).ready(function () {
+
+
+
+            $("#provincecode").change(function () {
+                $.get("/User/getDistrictsByProvincial", { provincialcode: $("#provincecode").val() }, function (data) {
+                    $("#districtcode").empty()
+                    $("#districtcode").append("<option selected value=''>" + "-----" + "</option>")
+                    $("#towncode").empty()
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
+                    $.each(data, function (index, row) {
+
+                        $("#districtcode").append("<option value='" +row.code +"'>" + row.name + "</option>")
+                    })
+                    console.log('tinh')
+                    });
+            })
+
+            $("#districtcode").change(function () {
+                $.get("/User/getTownsByDistrict", { districtcode: $("#districtcode").val() }, function (data) {
+                    document.getElementById("towncode").innerHTML = "";
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
+                    console.log('vao')
+                    $.each(data, function (index, row) {
+                        $("#towncode").append("<option value='" + row.code + "'>" + row.name + "</option>")
+
+                    })
+                });
+            })
+
+            $("#ethnic").change(function () {
+                var tex = $('#ethnic option:selected').text();
+                $('#ethnic option:selected').attr('value', tex);
+            })
+
+        });
+
+        $("#radCamket").click(function () {
+            console.log("davao")
+            $("#btnGhinhan").attr("disabled", !this.checked);
+        });
+
+
+
+
+    </script>
+    <script>
+        $('#chooseFile').bind('change', function () {
+            var filename = $("#chooseFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -12,7 +12,7 @@ namespace p2.Controllers
         // GET: Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var sess = (imformation_user) Session[CommonConstants.USER_SESSION];
+            var sess = (user) Session[CommonConstants.USER_SESSION];
             if (sess == null)
             {
                 filterContext.Result = new RedirectToRouteResult(

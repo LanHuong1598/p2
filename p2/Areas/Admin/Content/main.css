@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  =========================================================
  * ArchitectUI HTML Theme Dashboard - v1.0.0
  =========================================================
@@ -9985,7 +9985,7 @@ a, button, .btn {
     .app-header__logo .logo-src {
         height: 23px;
         width: 97px;
-        background: url(assets/images/logo-inverse.png)
+        background: url(/Areas/Admin/Content/assets/images/2.png)
     }
 
 .app-header__menu, .app-header__mobile-menu {
@@ -23860,8 +23860,7 @@ a.fc-more {
             background: #fff;
             border-radius: 50px;
             padding: 0 10px;
-            overflow: hidden;
-        
+            overflow: hidden
         }
 
             .app-header .app-header__content .header-btn-lg {

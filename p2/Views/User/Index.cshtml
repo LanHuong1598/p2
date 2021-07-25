@@ -1,15 +1,25 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 @using p2.Models.Entities;
-@{ 
-    imformation_user user = ViewBag.User;
-    List<area> Districts = (List<area>) ViewBag.Districts;
+@using p2.Models.Handler;
+@{
+
+    Information_student user = ViewBag.User;
+    List<district> Districts = (List<district>)ViewBag.Districts;
+    record record10_1 = (record)ViewBag.Record10_1;
+    record record10_2 = (record)ViewBag.Record10_2;
+    record record11_1 = (record)ViewBag.Record11_1;
+    record record11_2 = (record)ViewBag.Record11_2;
+    record record12_1 = (record)ViewBag.Record12_1;
+    record record12_2 = (record)ViewBag.Record12_2;
+
+
 }
 
-@{ 
+@{
     string ngaysinhdate = null;
     if (user.date_of_birth != null)
     {
@@ -44,7 +54,7 @@
     <!-- Icons font CSS-->
     <link href="~/Content/login/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="~/Content/login/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="~/Content/custome.css" rel="stylesheet" media="all"/> 
+    <link href="~/Content/custome.css" rel="stylesheet" media="all" />
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Vendor CSS-->
@@ -56,32 +66,7 @@
 <body class="bg-gra-02">
     <form method="POST" name="frmXettuyen" enctype="multipart/form-data" action="/User/Index">
         <!-- Menu-->
-        <div class="main" id="main">
-            <div class="container">
-                <div class="logo">
-                    <a class="ahref" href="https://uet.vnu.edu.vn/"><img src="~/Content/img/logo.jpg" width="45" height="45"></a>
-                </div>
-                <nav>
-                    <div class="nav-fostrap">
-                        <ul>
-                            <li><a href="/Home/Logout">Đăng xuất (@ViewBag.Name)</a></li>
-                           
-                            <li><a href="">Đổi mật khẩu</a></li>
-
-                            <li><a href="">Hồ sơ thí sinh</a></li>
-
-
-                        </ul>
-                    </div> <!-- Dành cho Mobile -->
-                    <div class="nav-bg-fostrap">
-                        <div class="navbar-fostrap"> <span></span> <span></span> <span></span> </div>
-                        <a href="https://tuyensinh.uet.vnu.edu.vn/xettuyen/hosothisinh.php" class="title-mobile">Menu</a>
-                    </div>
-
-                </nav>
-            </div>
-
-        </div>
+      
 
         <script src="~/Scripts/jquery.min.js"></script>
 
@@ -90,7 +75,17 @@
             <div class="wrapper wrapper--w960">
                 <div class="card card-4">
                     <h1 class="title1">HỒ SƠ ĐĂNG KÝ XÉT TUYỂN</h1>
-                    <p style="text-align:center;"><font size="4" color="#ff3300">Thí sinh chưa nộp hồ sơ</font></p>
+                    @{
+                        if (user.active == 1)
+                        {
+                            <p style="text-align:center;"><font size="4" style="color:green">Thí sinh đã nộp hồ sơ</font></p>
+                        }
+                        else
+                        {
+                            <p style="text-align:center;"><font size="4" style="color:red">Thí sinh chưa nộp hồ sơ</font></p>
+                        }
+                    }
+
                     <div class="card-body">
 
                         <h2 class="title">A. Thông tin cá nhân</h2>
@@ -98,10 +93,11 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Họ và tên thí sinh (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input class="input--style-4" type="text" name="name" placeholder="" value="@user.name">
-                                    <input class="input--style-4" type="text" id="id" name="id" hidden value="@user.id" />
+                                    <input required class="input--style-4" type="text" name="name" placeholder="" value="@user.name">
+                                    <input class="input--style-4" type="text" id="code" name="code" hidden value="@user.code" />
                                 </div>
                             </div>
+
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Giới tính (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
@@ -124,7 +120,7 @@
                                             {
                                                 <label class="radio-container m-r-45">
                                                     Nam
-                                                    <input type="radio" name="sex" id="sex" value="Nam" >
+                                                    <input type="radio" name="sex" id="sex" value="Nam">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">
@@ -138,28 +134,55 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row row-space">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Ngày sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="date_of_birth" value="@ngaysinhdate">
-                                        <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
-                                    </div>
+                                    <label class="label">Số CMND (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="identity_card" id="identity_card" placeholder="" value="@user.identity_card">
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ngày sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    @{
+                                        if (user.date_of_birth != null)
+                                        {
+                                            <div class="input-group-icon">
+                                                <input class="input--style-4" type="date" name="date_of_birth" value="@ngaysinhdate">
+                                                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="input-group-icon">
+                                                <input class="input--style-4" type="date" name="date_of_birth" value="">
+                                                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                            </div>
+
+                                        }
+
+
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+
+                            <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Nơi sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <input required class="input--style-4" type="text" name="place_of_birth" id="place_of_birth" placeholder="" value="@user.place_of_birth">
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="input-group">
 
                                     <label class="label">Dân tộc (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <div class="rs-select2 js-select-simple">
+                                    <div class="rs-select2 js-select-simple" style="width:50%">
                                         <select id="ethnic" required name="ethnic" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px; color : #555;">
                                             <option selected="selected" value="">Chưa chọn</option>
 
@@ -271,8 +294,8 @@
 
                                             <option value="Rơ Măm">Rơ Măm</option>
 
-                             
-                                            
+
+
                                             <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 133.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDantoc-op-container"><span class="select2-selection__rendered" id="select2-optDantoc-op-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                         </select>
 
@@ -286,11 +309,11 @@
                                 <div class="input-group">
                                     <label class="label">Ảnh hồ sơ (*.jpg *.jpeg, tỷ lệ 4:6) (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="input-group js-input-file">
-                                        <input required class="form-control-file" type="file" id="fileimage" name="fileimage"  onchange="loadImage(event)" accept="image/*">
-                                       
-                                       
-                                    
-                                     
+                                        <input required class="form-control-file" type="file" id="fileimage" name="fileimage" onchange="loadImage(event)" accept="image/*">
+
+
+
+
 
                                     </div>
 
@@ -302,6 +325,7 @@
                                 <!-- Ảnh thí sinh -->
                                 <div class="input-group right">
                                     <img id="avatar" name="avatar" src="@user.image" width="115" height="150">
+                                    <input type="text" hidden id="image" name="image" value="@user.image">
                                 </div>
                             </div>
                         </div>
@@ -319,30 +343,30 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <span style="padding-top:50px;"> Tỉnh: </span>
-                                    <select name="provincial" id="provincial" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:240px">
+                                    <select name="provincecode" id="provincecode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:240px">
                                         @{
-                                            if (user.area == null)
+                                            if (user.towncode == null)
                                             {
 
                                                 <option value="" selected="selected">-----</option>
-                                                foreach (var item in ViewBag.Provincials)
+                                                foreach (var item in ViewBag.Province)
                                                 {
 
-                                                    <option value="@item.id">@item.name</option>
+                                                    <option value="@item.code">@item.name</option>
 
                                                 }
                                             }
                                             else
                                             {
-                                                foreach (var item in ViewBag.Provincials)
+                                                foreach (var item in ViewBag.Province)
                                                 {
-                                                    if (item.id == ViewBag.ProvincialID)
+                                                    if (item.code == ViewBag.ProvinceCode)
                                                     {
-                                                        <option value="@item.id" selected>@item.name</option>
+                                                        <option value="@item.code" selected>@item.name</option>
                                                     }
                                                     else
                                                     {
-                                                        <option value="@item.id">@item.name</option>
+                                                        <option value="@item.code">@item.name</option>
                                                     }
                                                 }
                                             }
@@ -354,9 +378,9 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <span style="padding-top:50px;"> Huyện : </span>
-                                    <select name="district" id="district" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                    <select name="districtcode" id="districtcode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
                                         @{
-                                            if (user.area == null)
+                                            if (user.towncode == null)
                                             {
                                                 <option value="">-----</option>
                                             }
@@ -364,13 +388,13 @@
                                             {
                                                 foreach (var item in ViewBag.Districts)
                                                 {
-                                                    if (item.id == ViewBag.DistrictID)
+                                                    if (item.code == ViewBag.DistrictCode)
                                                     {
-                                                        <option selected="selected" value="@item.id"> @item.name </option>
+                                                        <option selected="selected" value="@item.code"> @item.name </option>
                                                     }
                                                     else
                                                     {
-                                                        <option value="@item.id">@item.name </option>
+                                                        <option value="@item.code">@item.name </option>
                                                     }
 
 
@@ -385,23 +409,23 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <span style="padding-top:50px;"> Xã : </span>
-                                    <select required name="area" id="area" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                    <select required name="towncode" id="towncode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
                                         @{
-                                            if (user.area == null)
+                                            if (user.towncode == null)
                                             {
                                                 <option value="">-----</option>
                                             }
                                             else
                                             {
-                                                foreach (var item in ViewBag.Communes)
+                                                foreach (var item in ViewBag.Towns)
                                                 {
-                                                    if (item.id == ViewBag.DistrictID)
+                                                    if (item.code == ViewBag.TownCode)
                                                     {
-                                                        <option selected="selected" value="@item.id">@item.name </option>
+                                                        <option selected="selected" value="@item.code">@item.name </option>
                                                     }
                                                     else
                                                     {
-                                                        <option value="@item.id">@item.name </option>
+                                                        <option value="@item.code">@item.name </option>
                                                     }
 
 
@@ -418,24 +442,24 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Lớp 10</label>
-                                <input required class="input--style-4" type="text" name="place_of_study_10" id="place_of_study_10" value="@user.place_of_study_10">
+                                <input required class="input--style-4" type="text" name="school_address_10" id="school_address_10" value="@user.school_address_10">
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Lớp 11</label>
-                                    <input required class="input--style-4" type="text" name="place_of_study_11" id="place_of_study_11" value="@user.place_of_study_11">
+                                    <input required class="input--style-4" type="text" name="school_address_11" id="school_address_11" value="@user.school_address_11">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Lớp 12</label>
-                                <input required class="input--style-4" type="text" name="place_of_study_12" id="place_of_study_12" value="@user.place_of_study_12">
+                                <input required class="input--style-4" type="text" name="school_address_12" id="school_address_12" value="@user.school_address_12">
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Năm tốt nghiệp THPT</label>
-                                    <input required class="input--style-4" type="text" name="year_of_graduation" id="year_of_graduation" value="@user.year_of_graduation">
+                                    <input required class="input--style-4" type="text" name="school_year" id="school_year" value="@user.school_year">
                                 </div>
                             </div>
                         </div>
@@ -447,29 +471,29 @@
                                     <label required class="label">Đối tượng ưu tiên (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="priority_object" id="priority_object" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                        <select required name="statusmark_code" id="statusmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
                                             @{
-                                                if (user.priority_object == null)
+                                                if (user.statusmark_code == null)
 
                                                 {
                                                     <option selected="selected" value="">Chưa chọn</option>
-                                                    foreach (var item in ViewBag.Priority_Object)
+                                                    foreach (var item in ViewBag.StatusMark)
                                                     {
-                                                        <option value="@item.id">@item.name</option>
+                                                        <option value="@item.code">@item.name</option>
                                                     }
                                                 }
                                                 else
                                                 {
                                                     <option value="">Chưa chọn</option>
-                                                    foreach (var item in ViewBag.Priority_Object)
+                                                    foreach (var item in ViewBag.StatusMark)
                                                     {
-                                                        if (user.priority_object == item.id)
+                                                        if (user.statusmark_code == item.code)
                                                         {
-                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                            <option selected="selected" value="@item.code">@item.name</option>
                                                         }
                                                         else
                                                         {
-                                                            <option value="@item.id">@item.name</option>
+                                                            <option value="@item.code">@item.name</option>
                                                         }
                                                     }
                                                 }
@@ -485,28 +509,28 @@
                                     <label class="label">Khu vực (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="area_object" id="area_object" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                        <select required name="regionmark_code" id="regionmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
                                             @{
-                                                if (user.area_object == null)
+                                                if (user.regionmark_code == null)
                                                 {
                                                     <option selected="selected" value="">Chưa chọn</option>
-                                                    foreach (var item in ViewBag.Area_Object)
+                                                    foreach (var item in ViewBag.RegionMark)
                                                     {
-                                                        <option value="@item.id">@item.name</option>
+                                                        <option value="@item.code">@item.name</option>
                                                     }
                                                 }
                                                 else
                                                 {
                                                     <option value="">Chưa chọn</option>
-                                                    foreach (var item in ViewBag.Area_Object)
+                                                    foreach (var item in ViewBag.RegionMark)
                                                     {
-                                                        if (user.area_object == item.id)
+                                                        if (user.regionmark_code == item.code)
                                                         {
-                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                            <option selected="selected" value="@item.code">@item.name</option>
                                                         }
                                                         else
                                                         {
-                                                            <option value="@item.id">@item.name</option>
+                                                            <option value="@item.code">@item.name</option>
                                                         }
                                                     }
                                                 }
@@ -529,8 +553,8 @@
                         <div class="row row-space">
                             <div class="col-3">
                                 <div class="input-group">
-                                    <label  class="label">Địa chỉ Email (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input readonly class="input--style-4" type="email" name="email" id="email" value="@user.email">
+                                    <label class="label">Địa chỉ Email (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="email" name="email" id="email" value="@user.email">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -556,13 +580,14 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Địa chỉ (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required class="input--style-4" type="text" name="area_of_receiver" id="area_of_receiver" value="@user.area_of_receiver">
+                                    <input required class="input--style-4" type="text" name="address" id="address" value="@user.address">
                                 </div>
                             </div>
                         </div>
                         <hr class="sesstionbreak">
                         <h2 class="title">D. Xét tuyển</h2>
-                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_10_1_code" id="record_10_1_code" value="@user.record_10_1_code" hidden />
                         <div class="row row-space">
                             <div class="col-5">
                                 <div class="input-group">
@@ -572,15 +597,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
-                                        <input required class="input--style-4" type="text" name="physic_10_1" id="physic_10_1"  placeholder="Lý" value="@user.physic_10_1">
+
+                                        <input required class="input--style-4" type="text" name="physic_10_1" id="physic_10_1" placeholder="Lý" value="@user.physic_10_1">
                                         <span class="tooltiptext">Lý</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_10_1" id="chemistry_10_1" placeholder="Hóa" value="@user.chemistry_10_1">
@@ -588,7 +614,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_10_1" id="english_10_1" placeholder="Anh" value="@user.english_10_1">
@@ -596,18 +622,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input class="input--style-4" type="text" name="txtTb10Hk1" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
-                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_10_2_code" id="record_10_2_code" value="@user.record_10_2_code" hidden />
                         <div class="row row-space">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="math_10_2" id="math_10_2" placeholder="Toán" value="@user.math_10_2">
@@ -615,7 +636,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="physic_10_2" id="physic_10_2" placeholder="Lý" value="@user.physic_10_2">
@@ -623,7 +644,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_10_2" id="chemistry_10_2" placeholder="Hóa" value="@user.chemistry_10_2">
@@ -631,7 +652,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_10_2" id="english_10_2" placeholder="Anh" value="@user.english_10_2">
@@ -639,18 +660,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input  class="input--style-4" type="text" name="txtTb10Hk2" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
-                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_11_1_code" id="record_11_1_code" value="@user.record_11_1_code" hidden />
                         <div class="row row-space">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="math_11_1" id="math_11_1" placeholder="Toán" value="@user.math_11_1">
@@ -658,7 +674,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="physic_11_1" id="physic_11_1" placeholder="Lý" value="@user.physic_11_1">
@@ -666,7 +682,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_11_1" id="chemistry_11_1" placeholder="Hóa" value="@user.chemistry_11_1">
@@ -674,7 +690,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_11_1" id="english_11_1" placeholder="Anh" value="@user.english_11_1">
@@ -682,18 +698,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input class="input--style-4" type="text" name="txtTb11Hk1" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
-                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_11_2_code" id="record_11_2_code" value="@user.record_11_2_code" hidden />
                         <div class="row row-space">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="math_11_2" id="math_11_2" placeholder="Toán" value="@user.math_11_2">
@@ -701,7 +711,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="physic_11_2" id="physic_11_2" placeholder="Lý" value="@user.physic_11_2">
@@ -709,7 +719,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_11_2" id="chemistry_11_2" placeholder="Hóa" value="@user.chemistry_11_2">
@@ -717,7 +727,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_11_2" id="english_11_2" placeholder="Anh" value="@user.english_11_2">
@@ -725,18 +735,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input class="input--style-4" type="text" name="txtTb11Hk2" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
-                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ I (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_12_1_code" id="record_12_1_code" value="@user.record_12_1_code" hidden />
                         <div class="row row-space">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="math_12_1" id="math_12_!" placeholder="Toán" value="@user.math_12_1">
@@ -744,7 +748,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="physic_12_1" id="physic_12_1" placeholder="Lý" value="@user.physic_12_1">
@@ -752,7 +756,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_12_1" id="chemistry_12_1" placeholder="Hóa" value="@user.chemistry_12_1">
@@ -760,7 +764,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_12_1" id="english_12_1" placeholder="Anh" value="@user.english_12_1">
@@ -768,18 +772,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input class="input--style-4" type="text" name="txtTb12Hk1" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                        
                         </div>
-                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ II (Toán, Lý, Hóa, Anh)</label>
+                        <input class="input--style-4" type="text" name="record_12_2_code" id="record_12_2_code" value="@user.record_12_2_code" hidden />
                         <div class="row row-space">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="math_12_2" id="math_12_2" placeholder="Toán" value="@user.math_12_2">
@@ -787,7 +785,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="physic_12_2" id="physic_12_2" placeholder="Lý" value="@user.physic_12_2">
@@ -795,7 +793,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="chemistry_12_2" id="chemistry_12_2" placeholder="Hóa" value="@user.chemistry_12_2">
@@ -803,7 +801,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <div class="tooltip">
                                         <input required class="input--style-4" type="text" name="english_12_2" id="english_12_2" placeholder="Anh" value="@user.english_12_2">
@@ -811,14 +809,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="input-group">
-                                    <div class="tooltip">
-                                        <input class="input--style-4" type="text" name="txtTb12Hk1" placeholder="TB chung" value="">
-                                        <span class="tooltiptext">TB chung</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
                         <label class="label">File học bạ (JPG, PNG)</label>
 
@@ -826,31 +817,31 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*" >
-                                    
-                                 
-                                    
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_10_1" name="link_school_record_10_1" value="@user.link_school_record_10_1">
+
+
                                 </div>
-                                <img id="img_hocba" src="@user.school_record_10_1" style="width:80%" width="200" height="250">
+                                <img id="img_hocba" src="@user.link_school_record_10_1" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input  required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
-                                  
-                                
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_10_2" name="link_school_record_10_2" value="@user.link_school_record_10_2">
+
 
                                 </div>
-                                <img src="@user.school_record_10_2" style="width:80%" width="200" height="250">
+                                <img src="@user.link_school_record_10_2" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
 
-                                    <input  required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
-                                   
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_11_1" name="link_school_record_11_1" value="@user.link_school_record_11_1">
                                 </div>
-                                <img src="@user.school_record_11_1" style="width:80%" width="200" height="250">
+                                <img src="@user.link_school_record_11_1" style="width:80%" width="200" height="250">
                             </div>
 
 
@@ -859,29 +850,29 @@
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input  required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
-                                   
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_11_2" name="link_school_record_11_2" value="@user.link_school_record_11_2">
                                 </div>
-                                <img id="img_hocba" src="@user.school_record_11_2" style="width:80%" width="200" height="250">
+                                <img id="img_hocba" src="@user.link_school_record_11_2" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 1 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input  required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
-                                 
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_12_1" name="link_school_record_12_1" value="@user.link_school_record_12_1">
                                 </div>
-                                
-                                <img src="@user.school_record_12_1" style="width:80%" width="200" height="250">
+
+                                <img src="@user.link_school_record_12_1" style="width:80%" width="200" height="250">
                             </div>
                             <div class="col-3">
                                 <div class="input-group">
                                     <label class="label">Học bạ kì 2 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
-                                    <input  required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
-                                    
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_12_2" name="link_school_record_12_2" value="@user.link_school_record_12_2">
                                     @*<label class="label--file" for="school_record_12_2">Chọn file ảnh</label>
-                                    <input class="input-file" type="text" name="txtshool_record_12_2" hidden="" value="">*@
+                        <input class="input-file" type="text" name="txtshool_record_12_2" hidden="" value="">*@
                                 </div>
-                                <img  src="@user.school_record_12_2" style="width:80%" width="200" height="250">
+                                <img src="@user.link_school_record_12_2" style="width:80%" width="200" height="250">
                             </div>
 
 
@@ -893,37 +884,37 @@
 
                                     <div class="rs-select2 js-select-simple select--no-search">
 
-                                        <select required name="admission_group" id="admission_group" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
+                                        <select required name="enrollment_code" id="enrollment_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
                                                 style="height:50px;">
 
                                             @{
-                                                if (user.admission_group == null)
+                                                if (user.enrollment_code == null)
                                                 {
                                                     <option selected="selected" value="">-----</option>
-                                                    foreach (var item in ViewBag.Admission_group)
+                                                    foreach (var item in ViewBag.Enrollment)
                                                     {
-                                                        <option value="@item.id">@item.name</option>
+                                                        <option value="@item.code">@item.name</option>
                                                     }
                                                 }
                                                 else
                                                 {
                                                     <option value="">-----</option>
-                                                    foreach (var item in ViewBag.Admission_group)
+                                                    foreach (var item in ViewBag.Enrollment)
                                                     {
 
-                                                        if (item.id == user.admission_group)
+                                                        if (item.code == user.enrollment_code)
                                                         {
-                                                            <option selected="selected" value="@item.id">@item.name</option>
+                                                            <option selected="selected" value="@item.code">@item.name</option>
                                                         }
                                                         else
                                                         {
-                                                            <option  value="@item.id">@item.name</option>
+                                                            <option value="@item.code">@item.name</option>
                                                         }
                                                     }
                                                 }
 
                                             }
-                                           
+
 
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -933,7 +924,7 @@
 
                         </div>
                     </div>
-             
+
                 </div>
 
                 <hr class="linebreak">
@@ -975,7 +966,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+   
 
 
         <!-- Jquery JS-->
@@ -1016,7 +1007,7 @@
                 console.log(reader.result);
             };
             reader.readAsDataURL(event.target.files[0]);
-        
+
         };
 
     </script>
@@ -1036,66 +1027,70 @@
                     $(this).attr('selected', 'selected');
                 }
             });
-
-            var avatar = '@user.image';
-            if (avatar != null || avatar != undefined) {
+            console.log(dantoc);
+            var avatar_src = '@user.image';
+            if (avatar_src != '' && avatar_src != null) {
                 $('#fileimage').removeAttr('required');
             }
-            var school_record_10_1 = '@user.school_record_10_1';
-            if (school_record_10_1 != null || school_record_10_1 != undefined) {
+            console.log(avatar_src);
+            
+            var school_record_10_1_src = '@user.link_school_record_10_1';
+            if (school_record_10_1_src!='') {
                 $('#school_record_10_1').removeAttr('required');
             }
 
-            var school_record_10_2 = '@user.school_record_10_2';
-            if (school_record_10_2 != null || school_record_10_2 != undefined) {
+            var school_record_10_2_src = '@user.link_school_record_10_2';
+            if (school_record_10_2_src != null && school_record_10_2_src != '') {
                 $('#school_record_10_2').removeAttr('required');
 
             }
-            var school_record_11_1 = '@user.school_record_11_1';
-            if (school_record_11_1!= null || school_record_11_1 != undefined) {
+            var school_record_11_1_src = '@user.link_school_record_11_1';
+            if (school_record_11_1_src != null && school_record_11_1_src != '') {
                 $('#school_record_11_1').removeAttr('required');
             }
-            var school_record_11_2 = '@user.school_record_11_2';
-            if (school_record_11_2 != null || school_record_11_2 != undefined) {
+            var school_record_11_2_src = '@user.link_school_record_11_2';
+            if (school_record_11_2_src != null && school_record_11_2_src != '') {
                 $('#school_record_11_2').removeAttr('required');
             }
-            var school_record_12_1 = '@user.school_record_12_1';
-            if (school_record_12_1 != null || school_record_12_1 != undefined) {
+            var school_record_12_1_src = '@user.link_school_record_12_1';
+            if (school_record_12_1_src != null && school_record_12_1_src != '') {
                 $('#school_record_12_1').removeAttr('required');
             }
-            var school_record_12_2 = '@user.school_record_12_2';
-            if (school_record_12_2 != null || school_record_12_2 != undefined) {
+            var school_record_12_2_src = '@user.link_school_record_12_2';
+            if (school_record_12_2_src != null && school_record_12_2_src != '') {
                 $('#school_record_12_2').removeAttr('required');
             }
         }
 
-       
+
 
 
         $(document).ready(function () {
 
-            
 
-            $("#provincial").change(function () {
-                $.get("/User/getDistrictsByProvincial", { provincialID: $("#provincial").val() }, function (data) {
-                    $("#district").empty()
-                    $("#district").append("<option selected value=''>" + "-----" + "</option>")
-                    $("#area").append("<option selected value=''>" + "-----" + "</option>")
+
+            $("#provincecode").change(function () {
+                $.get("/User/getDistrictsByProvincial", { provincialcode: $("#provincecode").val() }, function (data) {
+                    $("#districtcode").empty()
+                    $("#districtcode").append("<option selected value=''>" + "-----" + "</option>")
+                    $("#towncode").empty()
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
                     $.each(data, function (index, row) {
-                        
-                        $("#district").append("<option value='" +row.id +"'>" + row.name + "</option>")
+
+                        $("#districtcode").append("<option value='" +row.code +"'>" + row.name + "</option>")
                     })
-                
+                    console.log('tinh')
                     });
             })
 
-            $("#district").change(function () {
-                $.get("/User/getCommunesByDistrict", { districtID: $("#district").val() }, function (data) {
-                    document.getElementById("area").innerHTML = "";
-                    $("#area").append("<option selected value=''>" + "-----" + "</option>")
+            $("#districtcode").change(function () {
+                $.get("/User/getTownsByDistrict", { districtcode: $("#districtcode").val() }, function (data) {
+                    document.getElementById("towncode").innerHTML = "";
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
+                    console.log('vao')
                     $.each(data, function (index, row) {
-                        $("#area").append("<option value='" + row.id + "'>" + row.name + "</option>")
-                        console.log('va0')
+                        $("#towncode").append("<option value='" + row.code + "'>" + row.name + "</option>")
+
                     })
                 });
             })
@@ -1111,10 +1106,10 @@
             console.log("davao")
             $("#btnGhinhan").attr("disabled", !this.checked);
         });
-   
 
-        
-        
+
+
+
     </script>
     <script>
         $('#chooseFile').bind('change', function () {
@@ -1129,6 +1124,6 @@
             }
         });
     </script>
- 
+
 </body>
 </html>

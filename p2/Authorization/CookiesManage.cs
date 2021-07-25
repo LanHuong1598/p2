@@ -7,10 +7,10 @@ namespace p2.Authorization
 {
     public class CookiesManage
     {
-        public static imformation_user getUser()
+        public static prestudent getPreStudent()
         {
-            imformation_user user = new imformation_user();
-            var cookiesClient = (imformation_user)HttpContext.Current.Session[CommonConstants.USER_SESSION];
+            prestudent user = new prestudent();
+            var cookiesClient = (prestudent)HttpContext.Current.Session[CommonConstants.USER_SESSION];
             if (cookiesClient != null)
             {
                 user = cookiesClient;
@@ -21,6 +21,36 @@ namespace p2.Authorization
                 return null;
             }
           
+        }
+        public static user getUser()
+        {
+            user us = new user();
+            var cookiesClient = (user)HttpContext.Current.Session[CommonConstants.USER_SESSION];
+            if(cookiesClient!=null)
+            {
+                us = cookiesClient;
+                return us;
+            }
+            else
+            {
+                return null;
+            }
+           
+        }
+        public static staff getAdmin()
+        {
+            staff us = new staff();
+            var cookiesClient = (staff)HttpContext.Current.Session[CommonConstants.ADMIN_SESSION];
+            if (cookiesClient != null)
+            {
+                us = cookiesClient;
+                return us;
+            }
+            else
+            {
+                return null;
+            }
+
         }
     }
 }
