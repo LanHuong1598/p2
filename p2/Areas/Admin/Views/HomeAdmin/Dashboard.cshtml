@@ -1,8 +1,251 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@using p2.Areas.Admin.Models.Handler;
+@{ 
+    Statistic_Student statistic_ = ViewBag.Statistic;
+}
+<div class="app-main__inner">
+    <div class="app-page-title">
 
-<h2>Dashboard</h2>
+    </div>
+    <div class="row">
 
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-midnight-bloom">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Tổng số thí sinh</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div style="margin-left:50px" class="widget-numbers text-white"><span>@statistic_.total</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-arielle-smile">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Miền bắc</div>                     
+                    </div>
+                    <div class="widget-content-right">
+                        <div style="margin-left:50px" class="widget-numbers text-white"><span>@statistic_.north_total</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-grow-early">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Miền nam</div>
+                      
+                    </div>
+                    <div class="widget-content-right">
+                        <div style="margin-left:50px" class="widget-numbers text-white"><span>@statistic_.south_total</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="divider mt-0" style="margin-bottom: 30px;"></div>
+    <div class="main-card mb-3 card">
+        <div class="no-gutters row">
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Tổng nam</div>
+                                            
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">@statistic_.male</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Tổng nữ</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-primary">@statistic_.female</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Nam miền Bắc</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-danger">@statistic_.north_male</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Nam miền Nam</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning">@statistic_.south_male</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Nữ miền Bắc</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">@statistic_.north_female</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Nữ miền Nam</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-primary">@statistic_.south_female</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="app-main__inner">
+    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div  class="main-card mb-3 card">
+            <h1 style="margin-left:20px">Danh sách thí sinh đã nộp hồ sơ </h1>
+            <a style="margin-bottom:20px; margin-left:20px; width:250px" class="btn btn-primary" href="/Admin/Student/AddStudent">Thêm thí sinh</a>
+            <div class="card-body">
+                <table id="example" class="table table-striped table-bordered" style="width:97%;margin-left:10px; margin-right:10px">
+                    <thead>
+                        <tr>
+                            <th id="stt" class="no-sort" style="text-align:center">STT</th>
+                            <th style="text-align:center">Họ và tên</th>
+                            <th style="text-align:center">Ngày sinh</th>
+                            <th style="text-align:center">Giới tính</th>
+                            <th style="text-align:center">Hộ khẩu thường trú</th>
+                            <th style="text-align:center">Khối xét tuyển</th>
+                            <th style="text-align:center">Điểm</th>
+                            <th style="text-align:center">Công cụ</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            var i = 0;
+                            foreach (var item in ViewBag.List_Student_Commit)
+                            {
+                                i = i + 1;
+                                <tr>
+                                    <td style="text-align:center">@i</td>
+                                    <td style="text-align:center">@item.name</td>
+                                    <td style="text-align:center">@item.date_of_birth</td>
+                                    <td style="text-align:center">@item.sex</td>
+                                    <td style="text-align:center">@item.permanent_residence</td>
+                                    <td style="text-align:center">@item.enrolment</td>
+                                    <td style="text-align:center">@item.totalmark</td>
+                                    <td style="text-align:center">
+
+                                        <a class="pe-7s-info" href="/Admin/Student/DetailStudent?code=@item.code"></a>
+                                        <a class="pe-7s-trash" href="#"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+                
+         
+                  
+                   
+                
+           
+        </div>
+
+    </div>
+</div>
+
+<script>
+    
+    $('#example').dataTable({
+        "columnDefs": [
+            { "orderable": false, "targets": 0 }
+        ],
+        "order": [],  // not set any order rule for any column.
+    });
+    new $.fn.dataTable.FixedHeader(table);
+
+    table.on('order.dt search.dt', function () {
+        table.column(0, {
+            search: 'applied',
+            order: 'applied'
+        }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
+</script>
+
+<style>
+   
+</style>

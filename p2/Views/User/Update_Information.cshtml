@@ -1,4 +1,4 @@
-﻿@{
+﻿@*@{
     ViewBag.Title = "Home Page";
     Layout = null;
 
@@ -1016,16 +1016,16 @@
                 }
             });
 
-            var avatar = '@user.image';
-            if (avatar != null || avatar != undefined) {
+            var avatar_link = '@user.image';
+            if (avatar_link != null || avatar_link != undefined) {
                 $('#fileimage').removeAttr('required');
             }
-            var school_record_10_1 = '@user.school_record_10_1';
-            if (school_record_10_1 != null || school_record_10_1 != undefined) {
+            var school_record_10_1_src = '@user.school_record_10_1.link';
+            if (school_record_10_1_src != null || school_record_10_1_src != undefined) {
                 $('#school_record_10_1').removeAttr('required');
             }
 
-            var school_record_10_2 = '@user.school_record_10_2';
+            var school_record_10_2_src = '@user.school_record_10_2_link';
             if (school_record_10_2 != null || school_record_10_2 != undefined) {
                 $('#school_record_10_2').removeAttr('required');
 
@@ -1099,4 +1099,4 @@
 
     </script>
 </body>
-</html>
+</html>*@

@@ -17,15 +17,23 @@ namespace p2.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string id, string password)
+        public ActionResult Index(string username, string password)
         {
-            bool statusLogin = new F_User().Login(id, password);
+            bool statusLogin = new F_User().Login(username, password);
+            bool statusLoginAdmin = new F_User().LoginAdmin(username, password);
             if (statusLogin == true)
             {
                 F_User f_user = new F_User();
-                var user = f_user.getByID(id);
+                var user = f_user.getUserLogin(username,password);
                 Session.Add(CommonConstants.USER_SESSION, user);
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("DashBoard", "User");
+            }
+            else if(statusLoginAdmin==true)
+            {
+                F_User f_user = new F_User();
+                var useradmin = f_user.getUserLoginAdmin(username, password);
+                Session.Add(CommonConstants.ADMIN_SESSION, useradmin);
+                return RedirectToAction("DashBoard", "HomeAdmin", new { area = "Admin" });
             }
             else
             {
@@ -35,7 +43,7 @@ namespace p2.Controllers
             }
             
         }
-
+        
         public ActionResult Logout()
         {
             Session.Add(CommonConstants.USER_SESSION, null);
@@ -47,11 +55,13 @@ namespace p2.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(account_user account, string password_confirm)
+        public ActionResult Register(user account, string password_confirm)
         {
 
             F_User f_user = new F_User();
-            string result = f_user.Register(account, password_confirm);
+            string ipaddress = "";
+            ipaddress = Request.UserHostAddress;
+            string result = f_user.Register(account, password_confirm,ipaddress);
             if (result != "Thành công")
             {
                 var err = result.Split('/');
@@ -85,7 +95,7 @@ namespace p2.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult up(account_user user, SchoolRecord record)
+        public ActionResult up(user user, SchoolRecord record)
         {
             return View();
         }

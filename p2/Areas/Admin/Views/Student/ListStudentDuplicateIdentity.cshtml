@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ListStudentDuplicateIdentity";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-top:100px ; margin-bottom:300px"  class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+    <div class="main-card mb-3 card">
+        <h2 style="margin-left:20px">Danh sách thí sinh trùng số CMND <text style="color:red">@ViewBag.identity</text> </h2>
+
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box table-responsive">
+
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">STT</th>
+                                <th style="text-align:center">Họ và tên</th>
+                                <th style="text-align:center">Ngày sinh</th>
+                                <th style="text-align:center">Giới tính</th>
+                                <th style="text-align:center">Hộ khẩu thường trú</th>
+                                <th style="text-align:center">Khối xét tuyển</th>
+                                <th style="text-align:center">Điểm</th>
+                                <th style="text-align:center">Công cụ</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                var i = 0;
+                                foreach (var item in ViewBag.ListDuplicate)
+                                {
+                                    i = i + 1;
+                                    <tr>
+                                        <td style="text-align:center">@i</td>
+                                        <td style="text-align:center">@item.name</td>
+                                        <td style="text-align:center">@item.date_of_birth</td>
+                                        <td style="text-align:center">@item.sex</td>
+                                        <td style="text-align:center">@item.permanent_residence</td>
+                                        <td style="text-align:center">@item.enrolment</td>
+                                        <td style="text-align:center">@item.totalmark</td>
+                                        <td style="text-align:center">
+
+                                            <a class="pe-7s-info" href="/Admin/Student/DetailStudent?code=@item.code"></a>
+                                            <a class="pe-7s-trash" href="#"></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

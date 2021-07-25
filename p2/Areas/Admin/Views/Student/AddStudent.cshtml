@@ -1,0 +1,933 @@
+﻿
+@{
+    ViewBag.Title = "AddStudent";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Student.cshtml";
+}
+<head>
+   
+</head>
+<body class="bg-gra-02">
+    <form method="POST" name="frmXettuyen" enctype="multipart/form-data" id="addnewstudent" action="/Admin/Student/AddStudent">
+        <!-- Menu-->
+
+
+        <script src="~/Scripts/jquery.min.js"></script>
+
+
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w960">
+                <div class="card card-4">
+                    <h1 class="title1">HỒ SƠ ĐĂNG KÝ XÉT TUYỂN</h1>
+                    @{
+                        if (ViewBag.Mess != null)
+                        {
+                            <h2 style="color:red" class="mess_">@ViewBag.Mess</h2>
+                        }
+                    }
+
+                    }
+
+                    <div class="card-body">
+
+                        <h2 class="title">A. Thông tin cá nhân</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên thí sinh (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="name" placeholder="" value="">
+
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Giới tính (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">
+                                            Nam
+                                            <input type="radio" name="sex" id="sex" value="Nam" checked="">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">
+                                            Nữ
+                                            <input type="radio" name="sex" id="sex" value="Nữ">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Số CMND (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="identity_card" id="identity_card" placeholder="" value="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ngày sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="date" name="date_of_birth" value="">
+                                        <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1"></i> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nơi sinh (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="place_of_birth" id="place_of_birth" placeholder="" value="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+
+                                    <label class="label">Dân tộc (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple" style="width:50%">
+                                        <select id="ethnic" required name="ethnic" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px; color : #555;">
+                                            <option selected="selected" value="">Chưa chọn</option>
+
+                                            <option value="Kinh">Kinh</option>
+
+                                            <option value="Tày">Tày</option>
+
+                                            <option value="Thái">Thái</option>
+
+                                            <option value="Hoa">Hoa</option>
+
+                                            <option value="Khmer">Khmer</option>
+
+                                            <option value="Mường">Mường</option>
+
+                                            <option value="Nùng">Nùng</option>
+
+                                            <option value="Mông">Mông</option>
+
+                                            <option value="Dao">Dao</option>
+
+                                            <option value="Gia Rai">Gia Rai</option>
+
+                                            <option value="Ngái">Ngái</option>
+
+                                            <option value="Ê Đê">Ê Đê</option>
+
+                                            <option value="Ba Na">Ba Na</option>
+
+                                            <option value="Xơ Đăng">Xơ Đăng</option>
+
+                                            <option value="Sán Chay">Sán Chay</option>
+
+                                            <option value="Cơ Ho">Cơ Ho</option>
+
+                                            <option value="Chăm">Chăm</option>
+
+                                            <option value="Sán Dìu">Sán Dìu</option>
+
+                                            <option value="Hrê">Hrê</option>
+
+                                            <option value="Mnông">Mnông</option>
+
+                                            <option value="Raglay">Raglay</option>
+
+                                            <option value="Xtiêng">Xtiêng</option>
+
+                                            <option value="Bru Vân Kiều">Bru Vân Kiều</option>
+
+                                            <option value="Thổ (4)">Thổ (4)</option>
+
+                                            <option value="Giáy">Giáy</option>
+
+                                            <option value="Cơ Tu">Cơ Tu</option>
+
+                                            <option value="Gié Triêng">Gié Triêng</option>
+
+                                            <option value="Mạ">Mạ</option>
+
+                                            <option value="Khơ mú">Khơ mú</option>
+
+                                            <option value="Co">Co</option>
+
+                                            <option value="Tà Ôi">Tà Ôi</option>
+
+                                            <option value="Chơ Ro">Chơ Ro</option>
+
+                                            <option value="Kháng">Kháng</option>
+
+                                            <option value="Xinh Mun">Xinh Mun</option>
+
+                                            <option value="Hà Nhì">Hà Nhì</option>
+
+                                            <option value="Chu Ru">Chu Ru</option>
+
+                                            <option value="Lào">Lào</option>
+
+                                            <option value="La Chí">La Chí</option>
+
+                                            <option value="La Ha">La Ha</option>
+
+                                            <option value="Phù Lá">Phù Lá</option>
+
+                                            <option value="La Hủ">La Hủ</option>
+
+                                            <option value="Lự">Lự</option>
+
+                                            <option value="Lô Lô">Lô Lô</option>
+
+                                            <option value="Chứt">Chứt</option>
+
+                                            <option value="Mảng">Mảng</option>
+
+                                            <option value="Pà Thẻn">Pà Thẻn</option>
+
+                                            <option value="Cơ Lao">Cơ Lao</option>
+
+                                            <option value="Cống">Cống</option>
+
+                                            <option value="Bố Y">Bố Y</option>
+
+                                            <option value="Si La">Si La</option>
+
+                                            <option value="Pu Péo">Pu Péo</option>
+
+                                            <option value="Brâu">Brâu</option>
+
+                                            <option value="Ơ Đu">Ơ Đu</option>
+
+                                            <option value="Rơ Măm">Rơ Măm</option>
+
+
+
+                                            <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" style="width: 133.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-optDantoc-op-container"><span class="select2-selection__rendered" id="select2-optDantoc-op-container" title="Chưa chọn">Chưa chọn</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select>
+
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Ảnh hồ sơ (*.jpg *.jpeg, tỷ lệ 4:6) (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="input-group js-input-file">
+                                        <input required class="form-control-file" type="file" id="fileimage" name="fileimage" onchange="loadImage(event)" accept="image/*">
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-3">
+                                <!-- Ảnh thí sinh -->
+                                <div class="input-group right">
+                                    <img id="avatar" name="avatar" src="" width="115" height="150">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label">Hộ khẩu thường chú (<text style="color:red">*</text>)</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Tỉnh: </span>
+                                    <select name="provincecode" id="provincecode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:240px">
+                                        <option value="" selected="selected">-----</option>
+                                        @foreach (var item in ViewBag.Province)
+                                        {
+
+                                            <option value="@item.code">@item.name</option>
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Huyện : </span>
+                                    <select name="districtcode" id="districtcode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                        <option value="">-----</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span style="padding-top:50px;"> Xã : </span>
+                                    <select required name="towncode" id="towncode" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;max-width:200px">
+                                        <option value="">-----</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="linebreakdot">
+                        <label class="label">Nơi học trung học phổ thông (THPT) hoặc tương đương: <font style="font-style: italic; font-size: 13px;">(Nếu cả 3 năm đều học cùng trường thì chỉ cần nhập thông tin vào năm lớp 10)</font> (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 10</label>
+                                <input required class="input--style-4" type="text" name="school_address_10" id="school_address_10" value="">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Lớp 11</label>
+                                    <input required class="input--style-4" type="text" name="school_address_11" id="school_address_11" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <label class="label">Lớp 12</label>
+                                <input required class="input--style-4" type="text" name="school_address_12" id="school_address_12" value="">
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Năm tốt nghiệp THPT</label>
+                                    <input required class="input--style-4" type="text" name="school_year" id="school_year" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">B. Thông tin phục vụ xét tuyển</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label required class="label">Đối tượng ưu tiên (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="statusmark_code" id="statusmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            <option selected="selected" value="">Chưa chọn</option>
+                                            @foreach (var item in ViewBag.StatusMark)
+                                            {
+                                                <option value="@item.code">@item.name</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Khu vực (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="regionmark_code" id="regionmark_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" style="height: 50px;">
+                                            @{
+                                                <option selected="selected" value="">Chưa chọn</option>
+                                                foreach (var item in ViewBag.RegionMark)
+                                                {
+                                                    <option value="@item.code">@item.name</option>
+                                                }
+                                            }
+
+
+
+
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="linebreakdot">
+
+
+                        <hr class="sesstionbreak">
+                        <h2 class="title">C. Thông tin liên hệ</h2>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ Email (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input class="input--style-4" type="email" name="email" id="email" value="">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại di động (<font size="4" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="phone" id="phone" value="">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Điện thoại Bố/Mẹ</label>
+                                    <input class="input--style-4" type="text" name="phone_of_parent" id="phone_of_parent" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Họ và tên người nhận thông báo (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="name_of_receiver" id="name_of_receiver" value="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Địa chỉ (<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required class="input--style-4" type="text" name="address" id="address" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="sesstionbreak">
+                        <h2 class="title">D. Xét tuyển</h2>
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_10_1" id="math_10_1" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+
+                                        <input required class="input--style-4" type="text" name="physic_10_1" id="physic_10_1" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_10_1" id="chemistry_10_1" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_10_1" id="english_10_1" placeholder="Anh" value="">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb10Hk1" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="label">Kết quả học tập năm lớp 10 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_10_2" id="math_10_2" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_10_2" id="physic_10_2" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_10_2" id="chemistry_10_2" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_10_2" id="english_10_2" placeholder="Anh" value="">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb10Hk2" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_11_1" id="math_11_1" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_11_1" id="physic_11_1" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_11_1" id="chemistry_11_1" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_11_1" id="english_11_1" placeholder="Anh" value="">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb11Hk1" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 11 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_11_2" id="math_11_2" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_11_2" id="physic_11_2" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_11_2" id="chemistry_11_2" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_11_2" id="english_11_2" placeholder="Anh" value="2">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb11Hk2" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ I (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_12_1" id="math_12_!" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_12_1" id="physic_12_1" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_12_1" id="chemistry_12_1" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_12_1" id="english_12_1" placeholder="Anh" value="">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb12Hk1" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="label">Kết quả học tập năm lớp 12 - Học kỳ II (Toán, Lý, Hóa, Anh, TB chung)</label>
+
+                        <div class="row row-space">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="math_12_2" id="math_12_2" placeholder="Toán" value="">
+                                        <span class="tooltiptext">Toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="physic_12_2" id="physic_12_2" placeholder="Lý" value="">
+                                        <span class="tooltiptext">Lý</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="chemistry_12_2" id="chemistry_12_2" placeholder="Hóa" value="">
+                                        <span class="tooltiptext">Hóa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input required class="input--style-4" type="text" name="english_12_2" id="english_12_2" placeholder="Anh" value="">
+                                        <span class="tooltiptext">Anh</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="tooltip">
+                                        <input class="input--style-4" type="text" name="txtTb12Hk1" placeholder="TB chung" value="">
+                                        <span class="tooltiptext">TB chung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="label">File học bạ (JPG, PNG)</label>
+
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_1" name="school_record_10_1" accept="image/*">
+                                    <input type="text" hidden id="link_school_record_10_1" name="link_school_record_10_1" value="">
+
+
+                                </div>
+                                <img id="img_hocba" src="" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 10(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_10_2" name="school_record_10_2" accept="image/*">
+
+
+
+                                </div>
+                                <img src="" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_1" name="school_record_11_1" accept="image/*">
+
+                                </div>
+                                <img src="" style="width:80%" width="200" height="250">
+                            </div>
+
+
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 11(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_11_2" name="school_record_11_2" accept="image/*">
+
+                                </div>
+                                <img id="img_hocba" src="" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 1 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_1" name="school_record_12_1" accept="image/*">
+
+                                </div>
+
+                                <img src="" style="width:80%" width="200" height="250">
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">Học bạ kì 2 lớp 12(<font size="4px" color="#ff3300"><strong>*</strong></font>)</label>
+                                    <input required onchange="loadFile(this)" type="file" id="school_record_12_2" name="school_record_12_2" accept="image/*">
+
+                                    @*<label class="label--file" for="school_record_12_2">Chọn file ảnh</label>
+                        <input class="input-file" type="text" name="txtshool_record_12_2" hidden="" value="">*@
+                                </div>
+                                <img src="" style="width:80%" width="200" height="250">
+                            </div>
+
+
+                        </div>
+                        <label class="label">Chọn khối xét tuyển</label>
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+
+                                    <div class="rs-select2 js-select-simple select--no-search">
+
+                                        <select required name="enrollment_code" id="enrollment_code" tabindex="-1" class="select2 select2-container select2-container--default select-huong" aria-hidden="true"
+                                                style="height:50px;">
+
+                                            @{
+                                                <option selected="selected" value="">-----</option>
+                                                foreach (var item in ViewBag.Enrollment)
+                                                {
+                                                    <option value="@item.code">@item.name</option>
+                                                }
+
+                                            }
+
+
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="linebreak">
+                <h4>Cam kết (<font size="4" color="#ff3300"><strong>*</strong></font>)</h4>
+                <div class="row row-space">
+                    <div class="input-group">
+                        <div class="p-t-10">
+                            <label class="radio-container justify">
+                                Tôi xin cam đoan những thông tin trên là đúng và cam kết thực hiện đúng Quy chế tuyển sinh đại học hệ chính quy; tuyển sinh cao đẳng nhóm ngành đào tạo giáo viên hệ chính quy của Bộ GDĐT và Hướng dẫn tuyển sinh đại học chính quy năm 2021 của HVKTQS. Nếu có gì sai sót tôi xin chịu trách nhiệm trước HĐTS và pháp luật.
+                                <p id="demo"></p>
+                                <input required type="checkbox" name="radCamket" id="radCamket" value="10">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row row-space">
+                    <div class="col-3">
+                        <div class="input-group">
+                            <div class="p-t-15">
+                                <button disabled class="btn btn--radius-2 btn--blue" type="submit" name="butGhinhan" id="btnGhinhan">Ghi nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group center">
+                            <div class="p-t-15">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group right">
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue" type="submit" name="butNophoso" onclick="submit_record()">Nộp hồ sơ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Jquery JS-->
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <!-- Vendor JS-->
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script src="~/Scripts/moment.min.js"></script>
+            <script src="~/Scripts/daterangepicker.js"></script>
+            <!-- Main JS-->
+            <script src="~/Scripts/global.js"></script>
+
+
+            <!-- end document-->
+    </form>
+    <div style="position: absolute; top: 0px;"></div>
+
+    <script>
+
+
+        var loadFile = function (e) {
+            var coltag = $(e).parent().parent();
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = $(coltag).children('img')[0];
+                console.log(output.src);
+                $(output).attr('src', reader.result);
+                $("txtimgAnh").val("1");
+            };
+            reader.readAsDataURL(event.target.files[0]);
+
+        };
+        var loadImage = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('avatar');
+                output.src = reader.result;
+                output.hidden = false;
+                console.log(reader.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+
+        };
+
+    </script>
+    <script type="text/javascript">
+        //function checkProperties(obj) {
+        //    for (var key in obj) {
+        //        if (obj[key] !== null && obj[key] != "")
+        //            return false;
+        //    }
+        //    return true;
+        //}
+        //function submit_record() {
+        //    var valdata = $("#addnewstudent").serialize();
+        //    console.log(checkProperties(valdata))
+        //    //if (checkProperties(data) == true) {
+        //    //    console.log(valdata)
+        //    //    $.ajax({
+        //    //        url: "/Admin/Student/AddNewStudent",
+        //    //        type: "POST",
+        //    //        data: valdata,
+        //    //        contentType: "application/json;charset=utf-8",
+
+        //    //        success: function (result) {
+        //    //            if (result == "1") {
+        //    //                document.getElementById("mess").innerHTML = "Đặt lại mật khẩu thành công";
+        //    //                document.getElementById("mess").style.color = "Green";
+        //    //            }
+
+        //    //        },
+        //    //        error: function (mess) {
+        //    //            alert(mess);
+        //    //        }
+        //    //    })
+        //    //}
+            
+           
+        //}
+
+        $(document).ready(function () {
+
+
+
+            $("#provincecode").change(function () {
+                $.get("/Admin/Student/getDistrictsByProvincial", { provincialcode: $("#provincecode").val() }, function (data) {
+                    $("#districtcode").empty()
+                    $("#districtcode").append("<option selected value=''>" + "-----" + "</option>")
+                    $("#towncode").empty()
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
+                    $.each(data, function (index, row) {
+
+                        $("#districtcode").append("<option value='" + row.code + "'>" + row.name + "</option>")
+                    })
+                    console.log('tinh')
+                });
+            })
+
+            $("#districtcode").change(function () {
+                $.get("/Admin/Student/getTownsByDistrict", { districtcode: $("#districtcode").val() }, function (data) {
+                    document.getElementById("towncode").innerHTML = "";
+                    $("#towncode").append("<option selected value=''>" + "-----" + "</option>")
+                    console.log('vao')
+                    $.each(data, function (index, row) {
+                        $("#towncode").append("<option value='" + row.code + "'>" + row.name + "</option>")
+
+                    })
+                });
+            })
+
+            $("#ethnic").change(function () {
+                var tex = $('#ethnic option:selected').text();
+                $('#ethnic option:selected').attr('value', tex);
+            })
+
+        });
+
+
+
+    </script>
+    <script>
+        $('#chooseFile').bind('change', function () {
+            var filename = $("#chooseFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+    </script>
+
+</body>
+
+

@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "DetailAccountStudent";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using p2.Models.Entities;
+@{ 
+    var account_ = (user)ViewBag.Account;
+}
+
+    <div id="content_" class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h2>Thông tin đăng nhập</h2>
+                    <div>
+                        <h3 id="mess" style="color:green"></h3>
+                    </div>
+
+                    <div style="margin-top:30px">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="username" class=""> Tên đăng nhập </label>
+
+                                    <input readonly name="username" id="username" placeholder="" type="text" class="form-control" value="@account_.username">
+                                </div>
+                            </div>
+
+
+
+                            <input hidden name="code" id="code" placeholder="" type="text" class="form-control" value="@account_.code">
+
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="password" class="">Mật khẩu</label>
+                                    <input readonly name="password" id="password" placeholder="" type="password" class="form-control" value="@account_.password">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="name" class=""> Họ và tên</label>
+
+                                    <input readonly name="name" id="name" placeholder="" type="text" class="form-control" value="@account_.name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="name" class=""> Số CMND/CMT</label>
+
+                                    <input readonly name="identity_card" id="identity_card" placeholder="" type="text" class="form-control" value="@account_.identity_card">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="email" class="">Email</label>
+                                    <input readonly name="email" id="email" placeholder="" type="email" class="form-control" value="@account_.email">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="phone" class=""> Số điện thoại</label>
+
+                                    <input readonly name="phone" id="phone" placeholder="" type="text" class="form-control" value="@account_.phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="address" class="">Địa chỉ</label>
+                                    <input readonly name="address" id="address" placeholder="" type="text" class="form-control" value="@account_.address">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="phone" class=""> Mật khẩu mới</label>
+
+                                    <input name="password_new" id="password_new" placeholder="" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button name="btn_reset" id="btn_reset" class="mt-2 btn btn-primary" onclick="check()">Đặt lại mật khẩu</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function check() {
+
+            var code = document.getElementById("code").value;
+            var password_new = document.getElementById("password_new").value;
+            if (password_new == "") {
+                document.getElementById("mess").style.color = "red";
+                document.getElementById("mess").innerHTML = "Mật khẩu mới không được trống";
+
+            }
+            else {
+                $.ajax({
+                    url: "/Admin/AccountStudent/ResetPassword",
+                    type: "GET",
+                    data: {
+                        code: code,
+                        password_new: password_new
+                    },
+                    contentType: "application/json;charset=utf-8",
+
+                    success: function (result) {
+                        if (result == "1") {
+                            document.getElementById("mess").innerHTML = "Đặt lại mật khẩu thành công";
+                            document.getElementById("mess").style.color = "Green";
+                        }
+
+                    },
+                    error: function (mess) {
+                        alert(mess);
+                    }
+                })
+            }
+
+        }
+        function ResetPass() {
+
+
+        }
+    </script>
+    <style>
+        #content_ {
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: 50px;
+            margin-bottom: 200px
+        }
+    </style>
